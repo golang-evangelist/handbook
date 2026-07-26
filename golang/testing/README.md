@@ -86,7 +86,7 @@ docs/
 
 ## Core Testing Concepts
 
-* [Table-Driven Testing)](docs/01-table-driven-testing.md)
+* [Table-Driven Testing](docs/01-table-driven-testing.md)
 * [Subtests (`t.Run`)](docs/02-subtests.md)
 * [Test Helpers (`t.Helper`)](docs/03-test-helpers.md)
 
