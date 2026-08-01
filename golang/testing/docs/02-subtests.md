@@ -379,11 +379,11 @@ Parent Test
 +---------------------+
      │
      ├─────────────┐
-     ▼                     ▼
-positive                negative
-     │                     │
-     ▼                     ▼
- PASS                     FAIL
+     ▼             ▼
+  positive      negative
+     │             │
+     ▼             ▼
+   PASS          FAIL
 ```
 
 Although all subtests belong to the same parent test, each one is treated as an independent testing unit.
