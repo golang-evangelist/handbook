@@ -1,54 +1,54 @@
 # Git Command Reference
 
-A complete practical **Git Command Reference** for **Developers, Software Engineers, and DevOps Engineers**.
+Kompletan praktični **Git Command Reference** za **Developere, Software Engineers i DevOps Engineers**.
 
-This repository is a structured reference of Git commands, organized into **35 thematic chapters**. Each chapter is contained in a separate `*.md` file and can be read independently or as part of the complete Git guide.
+Ovaj repository predstavlja strukturisanu referencu Git komandi, organizovanu u **35 tematskih poglavlja**. Svako poglavlje nalazi se u zasebnom `*.md` fajlu i može se čitati nezavisno ili kao deo kompletnog Git vodiča.
 
 ---
 
-## Table of Contents
+## Sadržaj
 
-* [About the Project](#about-the-project)
-* [Documentation Goals](#documentation-goals)
-* [Who This Documentation Is For](#who-this-documentation-is-for)
-* [How the Documentation Is Organized](#how-the-documentation-is-organized)
-* [Command Format](#command-format)
-* [35 Chapters](#35-chapters)
-* [Recommended Learning Order](#recommended-learning-order)
-* [Quick Navigation](#quick-navigation)
-* [Most Important Git Areas](#most-important-git-areas)
-* [Developer Workflow](#developer-workflow)
-* [DevOps Workflow](#devops-workflow)
-* [Safe Git Usage](#safe-git-usage)
+* [O projektu](#o-projektu)
+* [Cilj dokumentacije](#cilj-dokumentacije)
+* [Za koga je namenjena](#za-koga-je-namenjena)
+* [Kako je organizovana dokumentacija](#kako-je-organizovana-dokumentacija)
+* [Format komandi](#format-komandi)
+* [35 poglavlja](#35-poglavlja)
+* [Preporučeni redosled učenja](#preporučeni-redosled-učenja)
+* [Brza navigacija](#brza-navigacija)
+* [Najvažnije Git oblasti](#najvažnije-git-oblasti)
+* [Developer workflow](#developer-workflow)
+* [DevOps workflow](#devops-workflow)
+* [Bezbedno korišćenje Git-a](#bezbedno-korišćenje-git-a)
 * [Dangerous Commands](#dangerous-commands)
 * [Git Aliases](#git-aliases)
-* [How to Use This Repository as a Reference](#how-to-use-this-repository-as-a-reference)
-* [Commands Worth Memorizing](#commands-worth-memorizing)
-* [Complete Project Structure](#complete-project-structure)
+* [Kako koristiti ovaj repository kao referencu](#kako-koristiti-ovaj-repository-kao-referencu)
+* [Komande koje vredi zapamtiti](#komande-koje-vredi-zapamtiti)
+* [Kompletna struktura projekta](#kompletna-struktura-projekta)
 
 ---
 
-# About the Project
+# O projektu
 
-This repository is designed as a practical **Git Command Reference**, rather than a traditional Git tutorial.
+Ovaj repository je zamišljen kao **praktični Git Command Reference**, a ne kao klasičan Git tutorial.
 
-The goal is to bring together, in one place, the Git commands required during everyday work on software projects:
+Cilj je da na jednom mestu objedini Git komande koje su potrebne tokom svakodnevnog rada na softverskim projektima:
 
-* creating repositories;
-* Git configuration;
-* working with files;
+* kreiranje repository-ja;
+* konfiguracija Git-a;
+* rad sa fajlovima;
 * staging;
-* committing;
-* reviewing changes;
+* commit;
+* pregled izmena;
 * branch management;
-* merging;
-* rebasing;
-* remote repositories;
+* merge;
+* rebase;
+* remote repository-ji;
 * pull/push;
 * stash;
-* tags and releases;
-* history searching;
-* conflict resolution;
+* tagovi i release-ovi;
+* pretraga istorije;
+* rešavanje konflikata;
 * cherry-pick;
 * recovery;
 * bisect;
@@ -59,21 +59,21 @@ The goal is to bring together, in one place, the Git commands required during ev
 * repository maintenance;
 * Git internals;
 * sparse checkout;
-* archives;
+* archive;
 * automation;
 * CI/CD;
-* DevOps workflows;
+* DevOps workflow;
 * aliases.
 
-The documentation is structured so that it can be used as:
+Dokumentacija je organizovana tako da se može koristiti i kao:
 
 > **Learning Guide + Daily Cheat Sheet + Command Reference + DevOps Reference**
 
 ---
 
-# Documentation Goals
+# Cilj dokumentacije
 
-Git is much more than a few commands such as:
+Git je mnogo više od nekoliko komandi kao što su:
 
 ```bash
 git add
@@ -82,29 +82,29 @@ git push
 git pull
 ```
 
-In a real development environment, it is also necessary to understand:
+U realnom development okruženju potrebno je razumeti i:
 
-* how Git stores history;
-* how branches work;
-* how history can be modified;
-* how conflicts are resolved;
-* how lost commits can be found;
-* how changes can be analyzed;
-* how remote repositories are used;
-* how Git works inside CI/CD systems;
-* how repositories are maintained;
-* how Git objects and internals work;
-* how repositories can be automated.
+* kako Git čuva istoriju;
+* kako funkcionišu branch-evi;
+* kako se istorija menja;
+* kako se rešavaju konflikti;
+* kako se pronalaze izgubljeni commit-i;
+* kako se analiziraju promene;
+* kako se radi sa remote repository-jima;
+* kako Git funkcioniše unutar CI/CD sistema;
+* kako se održava repository;
+* kako se koriste Git objekti i internals;
+* kako se automatizuju česte operacije.
 
-For this reason, the documentation is divided into 35 areas that together cover a large part of practical Git workflows.
+Zbog toga je dokumentacija podeljena na 35 oblasti koje zajedno pokrivaju veliki deo praktičnog Git workflow-a.
 
 ---
 
-# Who This Documentation Is For
+# Za koga je namenjena
 
 ## Developers
 
-The documentation covers everyday operations:
+Dokumentacija pokriva svakodnevne operacije:
 
 ```text
 clone
@@ -123,7 +123,7 @@ tag
 log
 ```
 
-The following chapters are particularly useful:
+Posebno su korisna poglavlja:
 
 * `03-repository-status-and-information.md`
 * `04-staging-and-committing.md`
@@ -139,7 +139,7 @@ The following chapters are particularly useful:
 
 ## Software Engineers
 
-For more advanced development workflows, the following chapters are especially useful:
+Za napredniji development workflow posebno su korisna poglavlja koja obrađuju:
 
 * history analysis;
 * branch comparison;
@@ -152,7 +152,7 @@ For more advanced development workflows, the following chapters are especially u
 * automation;
 * aliases.
 
-Recommended chapters:
+Preporučena poglavlja:
 
 ```text
 13-searching-git-history.md
@@ -171,7 +171,7 @@ Recommended chapters:
 
 ## DevOps Engineers
 
-For DevOps and CI/CD workflows, the most important chapters cover:
+Za DevOps i CI/CD workflow najvažnija su poglavlja koja obrađuju:
 
 * automation;
 * CI;
@@ -184,7 +184,7 @@ For DevOps and CI/CD workflows, the most important chapters cover:
 * maintenance;
 * deterministic repository state.
 
-Especially:
+Posebno:
 
 ```text
 09-remote-repositories.md
@@ -201,22 +201,22 @@ Especially:
 
 ---
 
-# How the Documentation Is Organized
+# Kako je organizovana dokumentacija
 
-Each area is contained in a separate Markdown file.
+Svaka oblast nalazi se u posebnom Markdown fajlu.
 
-The naming convention is:
+Naming convention je:
 
 ```text
 NN-topic-name.md
 ```
 
-where:
+gde je:
 
-* `NN` — chapter number;
-* `topic-name` — the area name converted to lowercase kebab-case.
+* `NN` — redni broj poglavlja;
+* `topic-name` — naziv oblasti pretvoren u lowercase kebab-case.
 
-For example:
+Na primer:
 
 ```text
 01-configuration.md
@@ -226,24 +226,24 @@ For example:
 31-common-devops-ci-commands.md
 ```
 
-The chapter numbers ensure that the documentation naturally sorts in the recommended order.
+Redni brojevi omogućavaju da se dokumentacija prirodno sortira u preporučenom redosledu.
 
 ---
 
-# Command Format
+# Format komandi
 
-Commands are presented in the following standardized format:
+Komande su predstavljene u standardizovanom formatu:
 
 | Command | Description | Example | Branch State Before and After command | Output |
 | ------- | ----------- | ------- | ------------------------------------- | ------ |
 
-Each row represents a specific Git operation.
+Svaki red predstavlja konkretnu Git operaciju.
 
 ## Command
 
-Contains the Git command.
+Sadrži Git komandu.
 
-Example:
+Primer:
 
 ```bash
 git status
@@ -251,17 +251,17 @@ git status
 
 ## Description
 
-Explains what the command does and why it is used.
+Objašnjava šta komanda radi i zašto se koristi.
 
 ## Example
 
-Shows a real-world usage example.
+Prikazuje realan primer upotrebe.
 
 ## Branch State Before and After command
 
-Describes the state of the branch before and after executing the command.
+Opisuje stanje branch-a pre i nakon izvršavanja komande.
 
-This is especially important for operations such as:
+Ovo je naročito važno za operacije kao što su:
 
 ```text
 merge
@@ -275,36 +275,36 @@ push
 
 ## Output
 
-Shows a typical command result.
+Prikazuje tipičan rezultat komande.
 
-Output may depend on:
+Output može zavisiti od:
 
-* Git version;
-* repository;
-* current branch;
-* configuration;
-* remote repository;
-* operating system.
+* Git verzije;
+* repository-ja;
+* trenutnog branch-a;
+* konfiguracije;
+* remote repository-ja;
+* operativnog sistema.
 
-Therefore, output should be treated as a **representative example**, rather than a guaranteed identical result.
+Zbog toga output treba posmatrati kao **representative example**, a ne kao garantovani identičan rezultat.
 
 ---
 
-# 35 Chapters
+# 35 poglavlja
 
 ## 01 — Configuration
 
-**File:**
+**Fajl:**
 
 [`01-configuration.md`](01-configuration.md)
 
-Covers Git configuration:
+Obrađuje Git konfiguraciju:
 
 ```text
 git config
 ```
 
-Includes:
+Uključuje:
 
 * user configuration;
 * global configuration;
@@ -317,11 +317,11 @@ Includes:
 
 ## 02 — Creating Repositories
 
-**File:**
+**Fajl:**
 
 [`02-creating-repositories.md`](02-creating-repositories.md)
 
-Covers repository creation and initialization:
+Obrađuje kreiranje i inicijalizaciju repository-ja:
 
 ```text
 git init
@@ -332,11 +332,11 @@ git clone
 
 ## 03 — Repository Status & Information
 
-**File:**
+**Fajl:**
 
 [`03-repository-status-and-information.md`](03-repository-status-and-information.md)
 
-Covers repository inspection:
+Obrađuje inspekciju repository-ja:
 
 ```text
 git status
@@ -350,11 +350,11 @@ git show
 
 ## 04 — Staging & Committing
 
-**File:**
+**Fajl:**
 
 [`04-staging-and-committing.md`](04-staging-and-committing.md)
 
-The basic Git development cycle:
+Osnovni Git development cycle:
 
 ```text
 working tree
@@ -364,7 +364,7 @@ staging area
 commit
 ```
 
-Covers:
+Obrađuje:
 
 ```text
 git add
@@ -375,11 +375,11 @@ git commit
 
 ## 05 — Diff & Code Review
 
-**File:**
+**Fajl:**
 
 [`05-diff-and-code-review.md`](05-diff-and-code-review.md)
 
-Covers change analysis:
+Obrađuje analizu promena:
 
 ```text
 git diff
@@ -387,17 +387,17 @@ git diff --cached
 git show
 ```
 
-This chapter is especially important for code review and checking content before committing.
+Ovo poglavlje je posebno važno za code review i proveru sadržaja pre commit-a.
 
 ---
 
 ## 06 — Branching
 
-**File:**
+**Fajl:**
 
 [`06-branching.md`](06-branching.md)
 
-Covers:
+Obrađuje:
 
 ```text
 git branch
@@ -405,23 +405,23 @@ git switch
 git checkout
 ```
 
-and the branch lifecycle.
+i branch lifecycle.
 
 ---
 
 ## 07 — Merging
 
-**File:**
+**Fajl:**
 
 [`07-merging.md`](07-merging.md)
 
-Covers branch integration:
+Obrađuje spajanje branch-eva:
 
 ```text
 git merge
 ```
 
-including:
+uključujući:
 
 * fast-forward;
 * three-way merge;
@@ -432,18 +432,18 @@ including:
 
 ## 08 — Rebasing
 
-**File:**
+**Fajl:**
 
 [`08-rebasing.md`](08-rebasing.md)
 
-Covers:
+Obrađuje:
 
 ```text
 git rebase
 git rebase -i
 ```
 
-as well as:
+kao i:
 
 * history rewriting;
 * interactive rebase;
@@ -456,11 +456,11 @@ as well as:
 
 ## 09 — Remote Repositories
 
-**File:**
+**Fajl:**
 
 [`09-remote-repositories.md`](09-remote-repositories.md)
 
-Covers working with remote repositories:
+Obrađuje rad sa remote repository-jima:
 
 ```text
 git remote
@@ -473,13 +473,13 @@ git push
 
 ## 10 — Undoing Changes
 
-**File:**
+**Fajl:**
 
 [`10-undoing-changes.md`](10-undoing-changes.md)
 
-One of the most important chapters for everyday work.
+Jedno od najvažnijih poglavlja za svakodnevni rad.
 
-Covers:
+Obrađuje:
 
 ```text
 git restore
@@ -487,7 +487,7 @@ git reset
 git revert
 ```
 
-and the difference between:
+i razliku između:
 
 ```text
 working tree
@@ -499,11 +499,11 @@ repository history
 
 ## 11 — Stash
 
-**File:**
+**Fajl:**
 
 [`11-stash.md`](11-stash.md)
 
-Covers temporarily saving work:
+Obrađuje privremeno čuvanje rada:
 
 ```text
 git stash
@@ -517,27 +517,27 @@ git stash list
 
 ## 12 — Tags & Releases
 
-**File:**
+**Fajl:**
 
 [`12-tags-and-releases.md`](12-tags-and-releases.md)
 
-Covers:
+Obrađuje:
 
 ```text
 git tag
 ```
 
-and Git tag workflows for release management.
+i Git tag workflow za release management.
 
 ---
 
 ## 13 — Searching Git History
 
-**File:**
+**Fajl:**
 
 [`13-searching-git-history.md`](13-searching-git-history.md)
 
-Covers history searching using:
+Obrađuje pretragu istorije pomoću:
 
 ```text
 git log
@@ -550,11 +550,11 @@ git log -G
 
 ## 14 — Comparing Branches & Commits
 
-**File:**
+**Fajl:**
 
 [`14-comparing-branches-and-commits.md`](14-comparing-branches-and-commits.md)
 
-Covers comparisons between:
+Obrađuje poređenje:
 
 ```text
 branch ↔ branch
@@ -562,17 +562,17 @@ commit ↔ commit
 local ↔ remote
 ```
 
-using `git diff`, `git log`, and related commands.
+pomoću `git diff`, `git log` i povezanih komandi.
 
 ---
 
 ## 15 — Conflict Resolution
 
-**File:**
+**Fajl:**
 
 [`15-conflict-resolution.md`](15-conflict-resolution.md)
 
-Covers Git conflicts that occur during:
+Obrađuje Git konflikte nastale tokom:
 
 ```text
 merge
@@ -580,57 +580,57 @@ rebase
 cherry-pick
 ```
 
-and the process of resolving them.
+i proces njihovog rešavanja.
 
 ---
 
 ## 16 — Cherry-Pick
 
-**File:**
+**Fajl:**
 
 [`16-cherry-pick.md`](16-cherry-pick.md)
 
-Covers:
+Obrađuje:
 
 ```bash
 git cherry-pick
 ```
 
-and selectively transferring commits between branches.
+i selektivno prenošenje commit-a između branch-eva.
 
 ---
 
 ## 17 — Reflog & Recovery
 
-**File:**
+**Fajl:**
 
 [`17-reflog-and-recovery.md`](17-reflog-and-recovery.md)
 
-One of the most important chapters for recovery.
+Jedno od najvažnijih poglavlja za recovery.
 
-Covers:
+Obrađuje:
 
 ```bash
 git reflog
 ```
 
-as well as recovery after:
+kao i oporavak nakon:
 
-* reset;
-* rebase;
-* accidental branch switching;
-* lost commits;
-* other history-rewriting operations.
+* reset-a;
+* rebase-a;
+* pogrešnog branch switch-a;
+* izgubljenog commit-a;
+* drugih history-rewriting operacija.
 
 ---
 
 ## 18 — Git Bisect
 
-**File:**
+**Fajl:**
 
 [`18-git-bisect.md`](18-git-bisect.md)
 
-Covers finding the commit that introduced a bug:
+Obrađuje pronalaženje commit-a koji je uveo bug:
 
 ```text
 good commit
@@ -642,7 +642,7 @@ binary search
 first bad commit
 ```
 
-Main command:
+Glavna komanda:
 
 ```bash
 git bisect
@@ -652,17 +652,17 @@ git bisect
 
 ## 19 — Submodules
 
-**File:**
+**Fajl:**
 
 [`19-submodules.md`](19-submodules.md)
 
-Covers Git submodules:
+Obrađuje Git submodules:
 
 ```bash
 git submodule
 ```
 
-including:
+uključujući:
 
 * initialization;
 * update;
@@ -673,41 +673,41 @@ including:
 
 ## 20 — Worktrees
 
-**File:**
+**Fajl:**
 
 [`20-worktrees.md`](20-worktrees.md)
 
-Covers:
+Obrađuje:
 
 ```bash
 git worktree
 ```
 
-Worktrees allow you to work with multiple branches of the same repository in different directories.
+Worktrees omogućavaju rad sa više branch-eva istog repository-ja u različitim direktorijumima.
 
 ---
 
 ## 21 — Git LFS
 
-**File:**
+**Fajl:**
 
 [`21-git-lfs.md`](21-git-lfs.md)
 
-Covers Git Large File Storage.
+Obrađuje Git Large File Storage.
 
-It is used for large binary files that are not ideal for standard Git object storage.
+Koristi se za velike binarne fajlove koji nisu idealni za standardni Git object storage.
 
 ---
 
 ## 22 — Git Hooks
 
-**File:**
+**Fajl:**
 
 [`22-git-hooks.md`](22-git-hooks.md)
 
-Covers Git hooks and Git-event automation.
+Obrađuje Git hooks i automatizaciju Git događaja.
 
-Examples:
+Primeri:
 
 ```text
 pre-commit
@@ -720,11 +720,11 @@ post-merge
 
 ## 23 — Repository Maintenance
 
-**File:**
+**Fajl:**
 
 [`23-repository-maintenance.md`](23-repository-maintenance.md)
 
-Covers repository maintenance:
+Obrađuje održavanje repository-ja:
 
 ```text
 git gc
@@ -733,17 +733,17 @@ git prune
 git repack
 ```
 
-and related operations.
+i povezane operacije.
 
 ---
 
 ## 24 — Repository Diagnostics
 
-**File:**
+**Fajl:**
 
 [`24-repository-diagnostics.md`](24-repository-diagnostics.md)
 
-Covers troubleshooting and diagnostics:
+Obrađuje dijagnostiku problema:
 
 ```text
 git fsck
@@ -756,11 +756,11 @@ git rev-parse
 
 ## 25 — Git Objects / Internals
 
-**File:**
+**Fajl:**
 
 [`25-git-objects-internals.md`](25-git-objects-internals.md)
 
-Covers Git internals:
+Obrađuje Git internals:
 
 ```text
 blob
@@ -772,23 +772,23 @@ refs
 objects
 ```
 
-as well as:
+kao i:
 
 ```text
 .git/
 ```
 
-repository structure.
+strukturu repository-ja.
 
 ---
 
 ## 26 — Ignoring Files
 
-**File:**
+**Fajl:**
 
 [`26-ignoring-files.md`](26-ignoring-files.md)
 
-Covers:
+Obrađuje:
 
 ```text
 .gitignore
@@ -796,17 +796,17 @@ Covers:
 global gitignore
 ```
 
-and file ignore rules.
+i pravila ignorisanja fajlova.
 
 ---
 
 ## 27 — File Tracking
 
-**File:**
+**Fajl:**
 
 [`27-file-tracking.md`](27-file-tracking.md)
 
-Covers the file lifecycle:
+Obrađuje lifecycle fajla:
 
 ```text
 untracked
@@ -816,7 +816,7 @@ staged
 committed
 ```
 
-as well as:
+kao i:
 
 ```text
 modified
@@ -829,43 +829,43 @@ copied
 
 ## 28 — Sparse Checkout
 
-**File:**
+**Fajl:**
 
 [`28-sparse-checkout.md`](28-sparse-checkout.md)
 
-Covers selectively checking out part of a repository:
+Obrađuje selektivno checkout-ovanje dela repository-ja:
 
 ```bash
 git sparse-checkout
 ```
 
-This is especially useful for large repositories.
+Posebno je korisno kod velikih repository-ja.
 
 ---
 
 ## 29 — Git Archives
 
-**File:**
+**Fajl:**
 
 [`29-git-archives.md`](29-git-archives.md)
 
-Covers:
+Obrađuje:
 
 ```bash
 git archive
 ```
 
-for creating source distributions from Git history.
+za kreiranje source distribucija iz Git istorije.
 
 ---
 
 ## 30 — Environment & Automation
 
-**File:**
+**Fajl:**
 
 [`30-environment-and-automation.md`](30-environment-and-automation.md)
 
-Covers Git in automation environments:
+Obrađuje Git u automation okruženjima:
 
 * environment variables;
 * scripting;
@@ -877,11 +877,11 @@ Covers Git in automation environments:
 
 ## 31 — Common DevOps / CI Commands
 
-**File:**
+**Fajl:**
 
 [`31-common-devops-ci-commands.md`](31-common-devops-ci-commands.md)
 
-Covers Git commands useful in:
+Obrađuje Git komande korisne u:
 
 ```text
 CI
@@ -895,13 +895,13 @@ automation
 
 ## 32 — Common Developer Workflows
 
-**File:**
+**Fajl:**
 
 [`32-common-developer-workflows.md`](32-common-developer-workflows.md)
 
-Covers complete practical workflows.
+Obrađuje kompletne praktične workflow-e.
 
-For example:
+Na primer:
 
 ```text
 feature development
@@ -916,30 +916,30 @@ branch synchronization
 
 ## 33 — High-Value Commands to Memorize
 
-**File:**
+**Fajl:**
 
 [`33-high-value-commands-to-memorize.md`](33-high-value-commands-to-memorize.md)
 
-A compact list of Git commands with the highest practical value.
+Kompaktna lista Git komandi koje imaju najveću praktičnu vrednost.
 
-This chapter is intended for quick learning and memorization.
+Ovo poglavlje je namenjeno brzom učenju i memorisanju.
 
 ---
 
 ## 34 — Dangerous Commands
 
-**File:**
+**Fajl:**
 
 [`34-dangerous-commands.md`](34-dangerous-commands.md)
 
-Specifically covers commands that can:
+Posebno obrađuje komande koje mogu:
 
-* delete data;
-* rewrite history;
-* overwrite remote history;
-* remove local changes.
+* obrisati podatke;
+* promeniti istoriju;
+* prepisati remote istoriju;
+* ukloniti lokalne promene.
 
-Examples:
+Primeri:
 
 ```text
 git reset --hard
@@ -953,13 +953,13 @@ git rebase
 
 ## 35 — Practical Git Aliases
 
-**File:**
+**Fajl:**
 
 [`35-practical-git-aliases.md`](35-practical-git-aliases.md)
 
-Covers practical Git aliases for:
+Obrađuje praktične Git aliases za:
 
-* everyday development;
+* svakodnevni development;
 * history inspection;
 * branch management;
 * staging;
@@ -970,13 +970,13 @@ Covers practical Git aliases for:
 * DevOps;
 * CI.
 
-Example:
+Primer:
 
 ```bash
 git config --global alias.st 'status -sb'
 ```
 
-After that:
+Nakon toga:
 
 ```bash
 git st
@@ -984,9 +984,9 @@ git st
 
 ---
 
-# Recommended Learning Order
+# Preporučeni redosled učenja
 
-If you are learning Git from scratch, the recommended order is:
+Ako Git tek učite, preporučeni redosled je:
 
 ```text
 01 Configuration
@@ -1014,7 +1014,7 @@ If you are learning Git from scratch, the recommended order is:
 12 Tags & Releases
 ```
 
-After mastering the fundamentals:
+Nakon savladavanja osnova:
 
 ```text
 13 Searching Git History
@@ -1025,7 +1025,7 @@ After mastering the fundamentals:
 18 Git Bisect
 ```
 
-For advanced Git:
+Za napredni Git:
 
 ```text
 19 Submodules
@@ -1037,7 +1037,7 @@ For advanced Git:
 25 Git Objects / Internals
 ```
 
-For automation and DevOps:
+Za automation i DevOps:
 
 ```text
 26 Ignoring Files
@@ -1049,7 +1049,7 @@ For automation and DevOps:
 32 Common Developer Workflows
 ```
 
-For consolidating your knowledge:
+Za konsolidaciju znanja:
 
 ```text
 33 High-Value Commands to Memorize
@@ -1059,9 +1059,9 @@ For consolidating your knowledge:
 
 ---
 
-# Quick Navigation
+# Brza navigacija
 
-## Basic Git
+## Osnovni Git
 
 * [Configuration](01-configuration.md)
 * [Creating Repositories](02-creating-repositories.md)
@@ -1069,7 +1069,7 @@ For consolidating your knowledge:
 * [Staging & Committing](04-staging-and-committing.md)
 * [Diff & Code Review](05-diff-and-code-review.md)
 
-## Branching & History
+## Branching i istorija
 
 * [Branching](06-branching.md)
 * [Merging](07-merging.md)
@@ -1077,7 +1077,7 @@ For consolidating your knowledge:
 * [Searching Git History](13-searching-git-history.md)
 * [Comparing Branches & Commits](14-comparing-branches-and-commits.md)
 
-## Remote Workflow
+## Remote workflow
 
 * [Remote Repositories](09-remote-repositories.md)
 * [Tags & Releases](12-tags-and-releases.md)
@@ -1101,7 +1101,7 @@ For consolidating your knowledge:
 * [Repository Diagnostics](24-repository-diagnostics.md)
 * [Git Objects / Internals](25-git-objects-internals.md)
 
-## Repository Management
+## Repository management
 
 * [Ignoring Files](26-ignoring-files.md)
 * [File Tracking](27-file-tracking.md)
@@ -1122,9 +1122,9 @@ For consolidating your knowledge:
 
 ---
 
-# Most Important Git Areas
+# Najvažnije Git oblasti
 
-If you do not want to read all 35 chapters immediately, the following areas represent the essential minimum for everyday development:
+Ako ne želite da čitate svih 35 poglavlja odmah, sledeće oblasti predstavljaju osnovni minimum za svakodnevni development:
 
 ```text
 03 Repository Status & Information
@@ -1144,9 +1144,9 @@ If you do not want to read all 35 chapters immediately, the following areas repr
 
 ---
 
-# Developer Workflow
+# Developer workflow
 
-A typical feature workflow looks like this:
+Tipičan feature workflow izgleda ovako:
 
 ```text
 Clone / existing repository
@@ -1176,7 +1176,7 @@ Code review
 Merge
 ```
 
-Example basic workflow:
+Primer osnovnog workflow-a:
 
 ```bash
 git status
@@ -1200,13 +1200,13 @@ git rebase origin/main
 git push -u origin feature/login
 ```
 
-The exact strategy may depend on the rules of the specific project.
+Tačne strategije mogu zavisiti od pravila konkretnog projekta.
 
 ---
 
-# DevOps Workflow
+# DevOps workflow
 
-In DevOps environments, Git is often used as part of an automated pipeline:
+U DevOps okruženju Git se često koristi kao deo automatizovanog pipeline-a:
 
 ```text
 Repository
@@ -1226,7 +1226,7 @@ Package
 Deploy
 ```
 
-Typical commands include:
+Tipične komande uključuju:
 
 ```bash
 git clone
@@ -1239,35 +1239,35 @@ git status --porcelain
 git tag
 ```
 
-For CI systems, it is especially important to use predictable and machine-readable output.
+Za CI sisteme je naročito važno koristiti predvidiv i machine-readable output.
 
 ---
 
-# Safe Git Usage
+# Bezbedno korišćenje Git-a
 
-Git enables very powerful operations.
+Git omogućava veoma snažne operacije.
 
-Therefore, it is important to distinguish between:
+Zbog toga je važno razlikovati:
 
 ```text
 read-only operations
 ```
 
-and:
+od:
 
 ```text
 history-changing operations
 ```
 
-and:
+i:
 
 ```text
 destructive operations
 ```
 
-## Relatively Safe Operations
+## Relativno bezbedne operacije
 
-Examples:
+Primeri:
 
 ```bash
 git status
@@ -1279,9 +1279,9 @@ git remote -v
 git fetch
 ```
 
-## Operations That Modify Local History
+## Operacije koje menjaju lokalnu istoriju
 
-Examples:
+Primeri:
 
 ```bash
 git commit --amend
@@ -1290,9 +1290,9 @@ git rebase
 git cherry-pick
 ```
 
-## Operations That Can Modify or Delete Data
+## Operacije koje mogu menjati ili brisati podatke
 
-Examples:
+Primeri:
 
 ```bash
 git reset --hard
@@ -1301,7 +1301,7 @@ git clean -fdx
 git push --force
 ```
 
-Before executing a destructive command, check:
+Pre izvršavanja destruktivne komande treba proveriti:
 
 ```bash
 git status
@@ -1314,13 +1314,13 @@ git reflog
 
 # Dangerous Commands
 
-Chapter:
+Poglavlje:
 
 [`34-dangerous-commands.md`](34-dangerous-commands.md)
 
-should be used as a safety reference before executing commands that modify Git history or delete data.
+treba koristiti kao bezbednosnu referencu pre izvršavanja komandi koje menjaju Git istoriju ili brišu podatke.
 
-Pay particular attention to:
+Posebno obratiti pažnju na:
 
 ```bash
 git reset --hard
@@ -1331,39 +1331,39 @@ git push --force-with-lease
 git rebase
 ```
 
-An important rule:
+Važno pravilo:
 
-> **Do not use a destructive Git command if you are not sure what will be deleted or which history will be modified.**
+> **Nemojte koristiti destruktivnu Git komandu ako niste sigurni šta će biti obrisano ili koja će istorija biti promenjena.**
 
 ---
 
 # Git Aliases
 
-Chapter:
+Poglavlje:
 
 [`35-practical-git-aliases.md`](35-practical-git-aliases.md)
 
-contains practical aliases for everyday work.
+sadrži praktične aliases za svakodnevni rad.
 
-Example:
+Primer:
 
 ```bash
 git config --global alias.st 'status -sb'
 ```
 
-After that:
+Nakon toga:
 
 ```bash
 git st
 ```
 
-becomes a shorter form of:
+Postaje kraći oblik za:
 
 ```bash
 git status -sb
 ```
 
-Useful aliases may include:
+Korisni aliases mogu biti:
 
 ```text
 git st
@@ -1382,59 +1382,59 @@ git conflicts
 git root
 ```
 
-Aliases should be used in a way that increases productivity without hiding destructive operations behind unclear names.
+Aliases treba koristiti tako da povećaju produktivnost, ali ne i da sakriju destruktivne operacije iza nejasnih naziva.
 
 ---
 
-# How to Use This Repository as a Reference
+# Kako koristiti ovaj repository kao referencu
 
-There are three recommended ways to use this repository.
+Postoje tri preporučena načina korišćenja.
 
-## 1. Linear Learning
+## 1. Linearno učenje
 
-Read:
+Čitati:
 
 ```text
 01 → 02 → 03 → ... → 35
 ```
 
-This approach is best for systematic Git learning.
+Ovaj pristup je najbolji za sistematsko učenje Git-a.
 
 ---
 
-## 2. Problem-Driven Learning
+## 2. Problem-driven learning
 
-If you have a specific problem, open the corresponding chapter directly.
+Ako imate konkretan problem, direktno otvorite odgovarajuće poglavlje.
 
-For example:
+Na primer:
 
-### "I accidentally performed a reset."
+### "Pogrešno sam uradio reset."
 
-Open:
+Otvorite:
 
 [`17-reflog-and-recovery.md`](17-reflog-and-recovery.md)
 
-### "I have a merge conflict."
+### "Imam merge conflict."
 
-Open:
+Otvorite:
 
 [`15-conflict-resolution.md`](15-conflict-resolution.md)
 
-### "I want to find the commit that introduced a bug."
+### "Želim da pronađem commit koji je uveo bug."
 
-Open:
+Otvorite:
 
 [`18-git-bisect.md`](18-git-bisect.md)
 
-### "I want to see what I changed."
+### "Želim da vidim šta sam promenio."
 
-Open:
+Otvorite:
 
 [`05-diff-and-code-review.md`](05-diff-and-code-review.md)
 
-### "I want to work with multiple branches in parallel."
+### "Želim da radim sa više branch-eva paralelno."
 
-Open:
+Otvorite:
 
 [`20-worktrees.md`](20-worktrees.md)
 
@@ -1442,7 +1442,7 @@ Open:
 
 ## 3. Quick Reference
 
-For everyday work, it is often enough to use:
+Za svakodnevni rad najčešće je dovoljno koristiti:
 
 ```text
 03
@@ -1460,7 +1460,7 @@ For everyday work, it is often enough to use:
 
 ---
 
-# Commands Worth Memorizing
+# Komande koje vredi zapamtiti
 
 ## Repository
 
@@ -1538,9 +1538,9 @@ git fsck
 
 ---
 
-# Complete Project Structure
+# Kompletna struktura projekta
 
-The repository should have the following structure:
+Repository treba da ima sledeću strukturu:
 
 ```text
 .
@@ -1585,9 +1585,9 @@ The repository should have the following structure:
 
 ---
 
-# Organization Concept
+# Koncept organizacije
 
-The entire documentation can be viewed through several levels.
+Cela dokumentacija može se posmatrati kroz nekoliko nivoa.
 
 ```text
                     Git
@@ -1616,23 +1616,23 @@ The entire documentation can be viewed through several levels.
 
 ---
 
-# What This Documentation Is Not
+# Šta ova dokumentacija nije
 
-This repository is not intended to be a complete replacement for the official Git documentation.
+Ovaj repository nije zamišljen kao potpuna zamena za zvaničnu Git dokumentaciju.
 
-Git has a large number of advanced options, configuration parameters, plumbing commands, and specific edge-case scenarios that cannot all be covered in a single practical reference.
+Git ima veliki broj naprednih opcija, konfiguracionih parametara, plumbing komandi i specifičnih edge-case scenarija koji nisu svi obrađeni u jednom praktičnom reference-u.
 
-This repository focuses on:
+Ovaj repository je fokusiran na:
 
-> **Practical commands and workflows that provide high value in real-world development and DevOps work.**
+> **praktične komande i workflow-e koji imaju visoku vrednost u realnom development i DevOps radu.**
 
-For detailed behavior of individual options, always check the documentation for your Git version and `git help`:
+Za detaljno ponašanje pojedinačnih opcija uvek treba proveriti odgovarajuću verziju Git dokumentacije i `git help`:
 
 ```bash
 git help <command>
 ```
 
-or:
+ili:
 
 ```bash
 git <command> --help
@@ -1642,7 +1642,7 @@ git <command> --help
 
 # Git Mental Model
 
-The most important concept for understanding Git is distinguishing between three fundamental levels:
+Najvažniji koncept za razumevanje Git-a je razlikovanje tri osnovna nivoa:
 
 ```text
 Working Tree
@@ -1656,7 +1656,7 @@ Staging Area
 Repository
 ```
 
-A remote repository is an additional layer:
+Remote repository je dodatni sloj:
 
 ```text
 Local Repository
@@ -1666,7 +1666,7 @@ Local Repository
 Remote Repository
 ```
 
-And `git fetch` transfers information from the remote without automatically changing the current working tree:
+A `git fetch` prenosi informacije sa remote-a bez automatskog menjanja trenutnog working tree-ja:
 
 ```text
 Remote Repository
@@ -1676,17 +1676,17 @@ Remote Repository
 Local Repository / Remote-tracking refs
 ```
 
-Understanding this model makes a large number of Git commands much easier to understand.
+Razumevanje ovog modela čini veliki broj Git komandi mnogo lakšim za razumevanje.
 
 ---
 
 # Branch Mental Model
 
-A branch is not a separate folder containing a copy of the project.
+Branch nije zaseban folder sa kopijom projekta.
 
-A branch is essentially a reference pointing to a commit.
+Branch je u osnovi referenca koja pokazuje na commit.
 
-Simplified:
+Pojednostavljeno:
 
 ```text
 main
@@ -1695,7 +1695,7 @@ main
 A ─── B ─── C
 ```
 
-When we create a new branch:
+Kada napravimo novi branch:
 
 ```text
              feature
@@ -1704,7 +1704,7 @@ When we create a new branch:
 A ─── B ─── C
 ```
 
-A new commit on the feature branch:
+Novi commit na feature branch-u:
 
 ```text
              feature
@@ -1715,7 +1715,7 @@ A ─── B ─── C ─── D
          main
 ```
 
-This mental model is essential for understanding:
+Ovaj mentalni model je ključan za razumevanje:
 
 ```text
 branch
@@ -1730,7 +1730,7 @@ cherry-pick
 
 # History Rewriting
 
-Some Git commands modify history:
+Neke Git komande menjaju istoriju:
 
 ```text
 rebase
@@ -1739,41 +1739,41 @@ commit --amend
 cherry-pick
 ```
 
-It is especially important to distinguish:
+Posebno treba razlikovati:
 
 ```text
 history-preserving operations
 ```
 
-from:
+od:
 
 ```text
 history-rewriting operations
 ```
 
-For example:
+Na primer:
 
 ```bash
 git revert
 ```
 
-adds a new commit that reverses the effect of a previous commit.
+dodaje novi commit koji poništava prethodni commit.
 
-In contrast:
+Nasuprot tome:
 
 ```bash
 git reset
 ```
 
-moves references and can remove commits from the current branch history.
+pomera reference i može ukloniti commit iz trenutne branch istorije.
 
-This distinction is covered in greater detail in the relevant chapters.
+Ova razlika je detaljnije obrađena u odgovarajućim poglavljima.
 
 ---
 
 # Final Workflow Reference
 
-For everyday development:
+Za svakodnevni development:
 
 ```bash
 git status
@@ -1787,7 +1787,7 @@ git rebase origin/main
 git push -u origin feature/name
 ```
 
-For inspection:
+Za pregled:
 
 ```bash
 git status
@@ -1797,7 +1797,7 @@ git diff --cached
 git branch -vv
 ```
 
-For recovery:
+Za recovery:
 
 ```bash
 git reflog
@@ -1806,7 +1806,7 @@ git log
 git branch
 ```
 
-For debugging:
+Za debugging:
 
 ```bash
 git bisect start
@@ -1814,7 +1814,7 @@ git bisect bad
 git bisect good <commit>
 ```
 
-For resolving conflicts:
+Za rešavanje konflikta:
 
 ```bash
 git status
@@ -1823,20 +1823,20 @@ git add <resolved-file>
 git rebase --continue
 ```
 
-or:
+ili:
 
 ```bash
 git add <resolved-file>
 git commit
 ```
 
-depending on the operation that caused the conflict.
+u zavisnosti od operacije koja je izazvala konflikt.
 
 ---
 
-# Conclusion
+# Zaključak
 
-This repository represents a complete practical journey through Git:
+Ovaj repository predstavlja kompletan praktični put kroz Git:
 
 ```text
 Configuration
@@ -1872,43 +1872,43 @@ Quick Reference
 Aliases
 ```
 
-If you use Git every day, you do not need to memorize all 35 chapters.
+Ako Git koristite svakodnevno, nije potrebno memorisati svih 35 poglavlja.
 
-The goal is to:
+Cilj je da:
 
-1. understand the Git mental model;
-2. know which commands exist;
-3. know when to use each command;
-4. understand the consequences of a command;
-5. know how to inspect repository state;
-6. know how to recover from mistakes;
-7. know how Git works in development and DevOps workflows.
+1. razumete Git mentalni model;
+2. znate koje komande postoje;
+3. znate kada koju komandu koristiti;
+4. razumete posledice komande;
+5. znate kako da proverite stanje repository-ja;
+6. znate kako da se oporavite od greške;
+7. znate kako Git funkcioniše u development i DevOps workflow-ima.
 
-For everyday work, first master:
+Za svakodnevni rad, prvo savladajte:
 
 ```text
 03 → 04 → 05 → 06 → 07 → 08 → 09 → 10
 ```
 
-Then:
+zatim:
 
 ```text
 15 → 17 → 18
 ```
 
-Then:
+a nakon toga:
 
 ```text
 19 → 20 → 21 → 22 → 23 → 24 → 25
 ```
 
-For DevOps and CI/CD:
+Za DevOps i CI/CD:
 
 ```text
 30 → 31 → 32
 ```
 
-For quick revision:
+Za brzo ponavljanje:
 
 ```text
 33 → 34 → 35
@@ -1916,9 +1916,9 @@ For quick revision:
 
 ---
 
-# Complete Navigation
+## Kompletna navigacija
 
-|  # | Area                            | File                                                                                 |
+|  # | Oblast                          | Fajl                                                                                 |
 | -: | ------------------------------- | ------------------------------------------------------------------------------------ |
 | 01 | Configuration                   | [`01-configuration.md`](01-configuration.md)                                         |
 | 02 | Creating Repositories           | [`02-creating-repositories.md`](02-creating-repositories.md)                         |
