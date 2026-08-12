@@ -1034,4 +1034,4 @@ commands that require older history may behave differently because the complete 
 
 **Next file:** `03-repository-status-and-information.md`
 
-[Next: Repository Status & Information](../03-repository-status-and-information.md)
+[Next: Repository Status & Information](03-repository-status-and-information.md)
