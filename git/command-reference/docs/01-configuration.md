@@ -1050,4 +1050,4 @@ global  core.autocrlf=input
 
 **Next file:** `02-creating-repositories.md`
 
-[Next: Creating Repositories](02-creating-repositories.md)
+[Next: Creating Repositories](../02-creating-repositories.md)

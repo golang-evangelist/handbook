@@ -1,1053 +1,1037 @@
-# 1. Configuration
+# 2. Creating Repositories
 
-Git configuration controls identity, behavior, defaults, aliases, editors, merge/rebase preferences, credential handling, hooks, and repository-specific settings.
+This chapter covers commands used to create, initialize, clone, configure, and inspect Git repositories.
 
 ---
 
 ## Table of Contents
 
-* [1.1 Configuration Levels](#11-configuration-levels)
-* [1.2 User Identity](#12-user-identity)
-* [1.3 Reading Configuration](#13-reading-configuration)
-* [1.4 Writing Configuration](#14-writing-configuration)
-* [1.5 Removing Configuration](#15-removing-configuration)
-* [1.6 Default Branch Configuration](#16-default-branch-configuration)
-* [1.7 Pull Configuration](#17-pull-configuration)
-* [1.8 Push Configuration](#18-push-configuration)
-* [1.9 Editor Configuration](#19-editor-configuration)
-* [1.10 Diff and Merge Tools](#110-diff-and-merge-tools)
-* [1.11 Line Ending Configuration](#111-line-ending-configuration)
-* [1.12 File Permissions](#112-file-permissions)
-* [1.13 Aliases](#113-aliases)
-* [1.14 Credential Configuration](#114-credential-configuration)
-* [1.15 Remote Configuration](#115-remote-configuration)
-* [1.16 Repository-Specific Configuration](#116-repository-specific-configuration)
-* [1.17 Configuration Sources](#117-configuration-sources)
-* [1.18 Configuration Debugging](#118-configuration-debugging)
-* [1.19 Configuration Includes](#119-configuration-includes)
-* [1.20 Useful Configuration Presets](#120-useful-configuration-presets)
-* [1.21 Configuration Command Summary](#121-configuration-command-summary)
+* [2.1 Repository Creation Overview](#21-repository-creation-overview)
+* [2.2 Initialize a New Repository](#22-initialize-a-new-repository)
+* [2.3 Initialize With a Specific Branch](#23-initialize-with-a-specific-branch)
+* [2.4 Initialize a Bare Repository](#24-initialize-a-bare-repository)
+* [2.5 Clone a Repository](#25-clone-a-repository)
+* [2.6 Clone Into a Specific Directory](#26-clone-into-a-specific-directory)
+* [2.7 Clone a Specific Branch](#27-clone-a-specific-branch)
+* [2.8 Clone a Specific Commit Depth](#28-clone-a-specific-commit-depth)
+* [2.9 Clone Without Checking Out Files](#29-clone-without-checking-out-files)
+* [2.10 Clone Using Different Protocols](#210-clone-using-different-protocols)
+* [2.11 Mirror a Repository](#211-mirror-a-repository)
+* [2.12 Create a Repository From an Existing Directory](#212-create-a-repository-from-an-existing-directory)
+* [2.13 Create an Initial Commit](#213-create-an-initial-commit)
+* [2.14 Connect an Existing Repository to a Remote](#214-connect-an-existing-repository-to-a-remote)
+* [2.15 Verify Repository Creation](#215-verify-repository-creation)
+* [2.16 Bare vs Non-Bare Repositories](#216-bare-vs-non-bare-repositories)
+* [2.17 Common Repository Creation Workflows](#217-common-repository-creation-workflows)
+* [2.18 Repository Creation Command Summary](#218-repository-creation-command-summary)
 
 ---
 
-## 1.1 Configuration Levels
+## 2.1 Repository Creation Overview
 
-Git configuration can exist at several levels.
+There are two fundamental ways to obtain a Git repository:
 
-| Level    | Command                 | Description                                 | Example                        | Branch State Before and After command | Output                   |
-| -------- | ----------------------- | ------------------------------------------- | ------------------------------ | ------------------------------------- | ------------------------ |
-| System   | `git config --system`   | Configures Git for all users on the machine | `git config --system --list`   | `main` → `main`                       | System configuration     |
-| Global   | `git config --global`   | Configures Git for the current user         | `git config --global --list`   | `main` → `main`                       | Global configuration     |
-| Local    | `git config --local`    | Configures the current repository           | `git config --local --list`    | `main` → `main`                       | Repository configuration |
-| Worktree | `git config --worktree` | Configures a specific worktree              | `git config --worktree --list` | `main` → `main`                       | Worktree configuration   |
+1. Initialize a new repository.
+2. Clone an existing repository.
 
-### Configuration precedence
-
-When the same key exists at multiple levels, the more specific configuration normally takes precedence:
-
-```text
-System
-  ↓
-Global
-  ↓
-Local
-  ↓
-Worktree
-  ↓
-Command-line configuration
-```
-
-For most developers, the most commonly used levels are:
+### Initialize a new repository
 
 ```bash
-git config --global
-git config --local
-```
-
----
-
-## 1.2 User Identity
-
-Git stores author and committer information inside commits.
-
-### Set global username
-
-| Command                                  | Description                     | Example                                 | Branch State Before and After command | Output    |
-| ---------------------------------------- | ------------------------------- | --------------------------------------- | ------------------------------------- | --------- |
-| `git config --global user.name "<name>"` | Sets the Git username globally  | `git config --global user.name "Marko"` | `main` → `main`                       | No output |
-| `git config user.name`                   | Displays the effective username | `git config user.name`                  | `main` → `main`                       | `Marko`   |
-
-```bash
-git config --global user.name "Marko"
-```
-
-Verify:
-
-```bash
-git config user.name
-```
-
-Example output:
-
-```text
-Marko
-```
-
-### Set global email
-
-| Command                                    | Description                  | Example                                            | Branch State Before and After command | Output            |
-| ------------------------------------------ | ---------------------------- | -------------------------------------------------- | ------------------------------------- | ----------------- |
-| `git config --global user.email "<email>"` | Sets the Git email globally  | `git config --global user.email "dev@example.com"` | `main` → `main`                       | No output         |
-| `git config user.email`                    | Displays the effective email | `git config user.email`                            | `main` → `main`                       | `dev@example.com` |
-
-```bash
-git config --global user.email "dev@example.com"
-```
-
-Verify:
-
-```bash
-git config user.email
-```
-
-Example:
-
-```text
-dev@example.com
-```
-
-### Configure identity only for the current repository
-
-This is useful when one repository requires a different identity.
-
-| Command                           | Description                       | Example                                    | Branch State Before and After command | Output    |
-| --------------------------------- | --------------------------------- | ------------------------------------------ | ------------------------------------- | --------- |
-| `git config user.name "<name>"`   | Sets repository-specific username | `git config user.name "Work User"`         | `main` → `main`                       | No output |
-| `git config user.email "<email>"` | Sets repository-specific email    | `git config user.email "work@example.com"` | `main` → `main`                       | No output |
-
-Example:
-
-```bash
-git config user.name "Work User"
-git config user.email "work@example.com"
-```
-
-The local repository configuration overrides the global configuration.
-
----
-
-## 1.3 Reading Configuration
-
-### Display all configuration
-
-| Command                        | Description                       | Example                        | Branch State Before and After command | Output                |
-| ------------------------------ | --------------------------------- | ------------------------------ | ------------------------------------- | --------------------- |
-| `git config --list`            | Displays available configuration  | `git config --list`            | `main` → `main`                       | Configuration entries |
-| `git config -l`                | Short form of `--list`            | `git config -l`                | `main` → `main`                       | Configuration entries |
-| `git config --global --list`   | Displays global configuration     | `git config --global --list`   | `main` → `main`                       | Global entries        |
-| `git config --local --list`    | Displays repository configuration | `git config --local --list`    | `main` → `main`                       | Local entries         |
-| `git config --system --list`   | Displays system configuration     | `git config --system --list`   | `main` → `main`                       | System entries        |
-| `git config --worktree --list` | Displays worktree configuration   | `git config --worktree --list` | `main` → `main`                       | Worktree entries      |
-
-Basic command:
-
-```bash
-git config --list
-```
-
-Example:
-
-```text
-user.name=Marko
-user.email=dev@example.com
-init.defaultbranch=main
-pull.rebase=true
-core.editor=vim
-```
-
-### Read a specific configuration key
-
-| Command                     | Description                 | Example                         | Branch State Before and After command | Output           |
-| --------------------------- | --------------------------- | ------------------------------- | ------------------------------------- | ---------------- |
-| `git config <key>`          | Reads a configuration value | `git config user.name`          | `main` → `main`                       | Configured value |
-| `git config --global <key>` | Reads global value          | `git config --global user.name` | `main` → `main`                       | Global value     |
-| `git config --local <key>`  | Reads local value           | `git config --local user.name`  | `main` → `main`                       | Local value      |
-
-Examples:
-
-```bash
-git config user.name
-git config user.email
-git config init.defaultBranch
-git config pull.rebase
-```
-
-### Get all values for a key
-
-Some configuration keys can occur multiple times.
-
-```bash
-git config --get-all remote.origin.fetch
-```
-
-Example output:
-
-```text
-+refs/heads/*:refs/remotes/origin/*
-```
-
----
-
-## 1.4 Writing Configuration
-
-### Basic configuration syntax
-
-```bash
-git config <key> <value>
-```
-
-Example:
-
-```bash
-git config user.name "Marko"
-```
-
-Global:
-
-```bash
-git config --global user.name "Marko"
-```
-
-Local:
-
-```bash
-git config --local user.name "Marko"
-```
-
-### Boolean configuration
-
-Git supports boolean values such as:
-
-```text
-true
-false
-yes
-no
-on
-off
-```
-
-Example:
-
-```bash
-git config --global pull.rebase true
-```
-
-Read it:
-
-```bash
-git config --global --get pull.rebase
-```
-
-Output:
-
-```text
-true
-```
-
-### Numeric configuration
-
-Some Git configuration values accept numbers.
-
-Example:
-
-```bash
-git config --global core.abbrev 12
-```
-
-Read it:
-
-```bash
-git config --global --get core.abbrev
-```
-
-Output:
-
-```text
-12
-```
-
----
-
-## 1.5 Removing Configuration
-
-| Command                             | Description                       | Example                                      | Branch State Before and After command | Output    |
-| ----------------------------------- | --------------------------------- | -------------------------------------------- | ------------------------------------- | --------- |
-| `git config --unset <key>`          | Removes a local configuration key | `git config --unset user.name`               | `main` → `main`                       | No output |
-| `git config --global --unset <key>` | Removes global configuration      | `git config --global --unset user.name`      | `main` → `main`                       | No output |
-| `git config --system --unset <key>` | Removes system configuration      | `git config --system --unset user.name`      | `main` → `main`                       | No output |
-| `git config --unset-all <key>`      | Removes all occurrences           | `git config --unset-all remote.origin.fetch` | `main` → `main`                       | No output |
-
-Example:
-
-```bash
-git config --global --unset user.name
-```
-
-Verify:
-
-```bash
-git config --global user.name
-```
-
-If no value exists, Git normally produces no value.
-
----
-
-## 1.6 Default Branch Configuration
-
-Modern Git repositories commonly use `main` as the default initial branch.
-
-### Set default branch
-
-| Command                                          | Description                              | Example                                          | Branch State Before and After command       | Output    |
-| ------------------------------------------------ | ---------------------------------------- | ------------------------------------------------ | ------------------------------------------- | --------- |
-| `git config --global init.defaultBranch main`    | Sets default branch for new repositories | `git config --global init.defaultBranch main`    | No repository branch → No repository branch | No output |
-| `git config --global init.defaultBranch develop` | Sets another default branch              | `git config --global init.defaultBranch develop` | No repository branch → No repository branch | No output |
-
-Example:
-
-```bash
-git config --global init.defaultBranch main
-```
-
-Now:
-
-```bash
-mkdir project
-cd project
 git init
 ```
 
-will normally initialize the repository with:
+Typical workflow:
 
 ```text
-main
+Directory
+   ↓
+git init
+   ↓
+.git/
+   ↓
+Git repository
 ```
 
-instead of:
+### Clone an existing repository
+
+```bash
+git clone <repository-url>
+```
+
+Typical workflow:
 
 ```text
-master
+Remote repository
+       ↓
+   git clone
+       ↓
+Local repository
+       ↓
+Working tree
 ```
 
 ---
 
-## 1.7 Pull Configuration
-
-### Configure pull to use rebase
-
-| Command                                 | Description                    | Example                                 | Branch State Before and After command | Output    |
-| --------------------------------------- | ------------------------------ | --------------------------------------- | ------------------------------------- | --------- |
-| `git config --global pull.rebase true`  | Makes `git pull` use rebase    | `git config --global pull.rebase true`  | `main` → `main`                       | No output |
-| `git config --global pull.rebase false` | Makes `git pull` use merge     | `git config --global pull.rebase false` | `main` → `main`                       | No output |
-| `git config --global pull.ff only`      | Allows only fast-forward pulls | `git config --global pull.ff only`      | `main` → `main`                       | No output |
-
-Recommended developer configuration:
-
-```bash
-git config --global pull.rebase true
-```
-
-Then:
-
-```bash
-git pull
-```
-
-behaves approximately like:
-
-```bash
-git fetch
-git rebase
-```
-
-instead of automatically creating merge commits.
-
-### Rebase only specific branches
-
-You can also configure rebase behavior per branch:
-
-```bash
-git config branch.main.rebase true
-```
-
----
-
-## 1.8 Push Configuration
-
-### Set automatic upstream behavior
-
-| Command                                         | Description                                              | Example                                         | Branch State Before and After command | Output    |
-| ----------------------------------------------- | -------------------------------------------------------- | ----------------------------------------------- | ------------------------------------- | --------- |
-| `git config --global push.autoSetupRemote true` | Automatically creates upstream tracking for new branches | `git config --global push.autoSetupRemote true` | `feature/login` → `feature/login`     | No output |
-| `git config --global push.default simple`       | Uses simple push behavior                                | `git config --global push.default simple`       | `main` → `main`                       | No output |
-| `git config --global push.default current`      | Pushes current branch                                    | `git config --global push.default current`      | `feature/x` → `feature/x`             | No output |
-| `git config --global push.followTags true`      | Pushes relevant annotated tags                           | `git config --global push.followTags true`      | `main` → `main`                       | No output |
-
-A useful modern configuration:
-
-```bash
-git config --global push.autoSetupRemote true
-```
-
-Then:
-
-```bash
-git switch -c feature/login
-git push
-```
-
-can automatically establish the upstream branch on supported Git versions.
-
----
-
-## 1.9 Editor Configuration
-
-Git opens an editor for operations such as:
-
-```bash
-git commit
-git tag -a
-git rebase -i
-```
-
-### Configure Vim
-
-```bash
-git config --global core.editor vim
-```
-
-### Configure Nano
-
-```bash
-git config --global core.editor nano
-```
-
-### Configure Visual Studio Code
-
-```bash
-git config --global core.editor "code --wait"
-```
-
-### Configure Neovim
-
-```bash
-git config --global core.editor nvim
-```
-
-| Command                                         | Description  | Example                                         | Branch State Before and After command | Output    |
-| ----------------------------------------------- | ------------ | ----------------------------------------------- | ------------------------------------- | --------- |
-| `git config --global core.editor vim`           | Uses Vim     | `git config --global core.editor vim`           | `main` → `main`                       | No output |
-| `git config --global core.editor nano`          | Uses Nano    | `git config --global core.editor nano`          | `main` → `main`                       | No output |
-| `git config --global core.editor "code --wait"` | Uses VS Code | `git config --global core.editor "code --wait"` | `main` → `main`                       | No output |
-| `git config --global core.editor nvim`          | Uses Neovim  | `git config --global core.editor nvim`          | `main` → `main`                       | No output |
-
-Verify:
-
-```bash
-git config --global core.editor
-```
-
----
-
-## 1.10 Diff and Merge Tools
-
-Git can be configured to use external diff and merge tools.
-
-### Configure a diff tool
-
-```bash
-git config --global diff.tool vimdiff
-```
-
-Run:
-
-```bash
-git difftool
-```
-
-### Configure a merge tool
-
-```bash
-git config --global merge.tool vimdiff
-```
-
-Run:
-
-```bash
-git mergetool
-```
-
-| Command                                  | Description                 | Example                                  | Branch State Before and After command             | Output                  |
-| ---------------------------------------- | --------------------------- | ---------------------------------------- | ------------------------------------------------- | ----------------------- |
-| `git config --global diff.tool vimdiff`  | Sets default diff tool      | `git config --global diff.tool vimdiff`  | `main` → `main`                                   | No output               |
-| `git config --global merge.tool vimdiff` | Sets default merge tool     | `git config --global merge.tool vimdiff` | `main` → `main`                                   | No output               |
-| `git difftool`                           | Opens configured diff tool  | `git difftool`                           | `main` → `main`                                   | External diff interface |
-| `git mergetool`                          | Opens configured merge tool | `git mergetool`                          | Conflict state → Conflict resolved when completed | Merge tool              |
-
----
-
-## 1.11 Line Ending Configuration
-
-Line endings differ between operating systems.
-
-Linux and macOS normally use:
-
-```text
-LF
-```
-
-Windows commonly uses:
-
-```text
-CRLF
-```
-
-### Linux configuration
-
-For a Linux development environment:
-
-```bash
-git config --global core.autocrlf input
-```
-
-This converts CRLF to LF when committing but does not automatically convert LF files to CRLF when checking them out.
-
-### Windows configuration
-
-A common Windows configuration is:
-
-```bash
-git config --global core.autocrlf true
-```
-
-### Disable automatic conversion
-
-```bash
-git config --global core.autocrlf false
-```
-
-| Command                                   | Description                                                | Example                                   | Branch State Before and After command | Output    |
-| ----------------------------------------- | ---------------------------------------------------------- | ----------------------------------------- | ------------------------------------- | --------- |
-| `git config --global core.autocrlf input` | Converts CRLF to LF on commit                              | `git config --global core.autocrlf input` | `main` → `main`                       | No output |
-| `git config --global core.autocrlf true`  | Converts line endings according to Git's platform behavior | `git config --global core.autocrlf true`  | `main` → `main`                       | No output |
-| `git config --global core.autocrlf false` | Disables automatic conversion                              | `git config --global core.autocrlf false` | `main` → `main`                       | No output |
-
-Check:
-
-```bash
-git config --global core.autocrlf
-```
-
----
-
-## 1.12 File Permissions
-
-Git can track executable-bit changes.
-
-### Ignore executable-bit changes
-
-```bash
-git config core.fileMode false
-```
-
-This is sometimes useful on filesystems where permission changes are not meaningful.
-
-### Enable executable-bit tracking
-
-```bash
-git config core.fileMode true
-```
-
-| Command                          | Description                           | Example                          | Branch State Before and After command | Output    |
-| -------------------------------- | ------------------------------------- | -------------------------------- | ------------------------------------- | --------- |
-| `git config core.fileMode true`  | Tracks executable permission changes  | `git config core.fileMode true`  | `main` → `main`                       | No output |
-| `git config core.fileMode false` | Ignores executable permission changes | `git config core.fileMode false` | `main` → `main`                       | No output |
-
----
-
-## 1.13 Aliases
-
-Aliases create shortcuts for frequently used commands.
-
-### Simple alias
-
-```bash
-git config --global alias.st status
-```
-
-Then:
-
-```bash
-git st
-```
-
-is equivalent to:
-
-```bash
-git status
-```
-
-### Common aliases
-
-| Command                                                                 | Description                 | Example               | Branch State Before and After command | Output          |
-| ----------------------------------------------------------------------- | --------------------------- | --------------------- | ------------------------------------- | --------------- |
-| `git config --global alias.st status`                                   | Creates `git st`            | `git st`              | `main` → `main`                       | Git status      |
-| `git config --global alias.co checkout`                                 | Creates `git co`            | `git co main`         | `feature/x` → `main`                  | Branch switched |
-| `git config --global alias.sw switch`                                   | Creates `git sw`            | `git sw main`         | `feature/x` → `main`                  | Branch switched |
-| `git config --global alias.br branch`                                   | Creates `git br`            | `git br`              | `main` → `main`                       | Branch list     |
-| `git config --global alias.ci commit`                                   | Creates `git ci`            | `git ci -m "Fix bug"` | `main` → `main`                       | Commit created  |
-| `git config --global alias.last "log -1 HEAD"`                          | Creates `git last`          | `git last`            | `main` → `main`                       | Last commit     |
-| `git config --global alias.lg "log --oneline --graph --decorate --all"` | Creates graphical log alias | `git lg`              | `main` → `main`                       | Commit graph    |
-| `git config --global alias.unstage "restore --staged"`                  | Creates unstage shortcut    | `git unstage app.js`  | `main` → `main`                       | File unstaged   |
-
-Recommended aliases:
-
-```bash
-git config --global alias.st "status -sb"
-git config --global alias.co checkout
-git config --global alias.sw switch
-git config --global alias.br branch
-git config --global alias.ci commit
-git config --global alias.last "log -1 HEAD"
-git config --global alias.lg "log --oneline --graph --decorate --all"
-git config --global alias.unstage "restore --staged"
-```
-
-### Shell aliases vs Git aliases
-
-A Git alias:
-
-```bash
-git config --global alias.st status
-```
-
-is invoked as:
-
-```bash
-git st
-```
-
-A shell alias such as:
-
-```bash
-alias gs='git status'
-```
-
-belongs to your shell and is invoked as:
-
-```bash
-gs
-```
-
-They are separate mechanisms.
-
----
-
-## 1.14 Credential Configuration
-
-Git can use credential helpers to avoid repeatedly entering credentials.
-
-### Inspect credential configuration
-
-```bash
-git config --global credential.helper
-```
-
-### Configure a credential helper
-
-| Command                                                        | Description                     | Example                                                        | Branch State Before and After command | Output    |
-| -------------------------------------------------------------- | ------------------------------- | -------------------------------------------------------------- | ------------------------------------- | --------- |
-| `git config --global credential.helper store`                  | Stores credentials on disk      | `git config --global credential.helper store`                  | `main` → `main`                       | No output |
-| `git config --global credential.helper cache`                  | Temporarily caches credentials  | `git config --global credential.helper cache`                  | `main` → `main`                       | No output |
-| `git config --global credential.helper "cache --timeout=3600"` | Caches credentials for one hour | `git config --global credential.helper "cache --timeout=3600"` | `main` → `main`                       | No output |
-
-### Security note
-
-Avoid blindly using:
-
-```bash
-git config --global credential.helper store
-```
-
-because credentials may be stored in plaintext depending on the environment.
-
-Prefer an OS credential manager or a secure credential helper where available.
-
----
-
-## 1.15 Remote Configuration
-
-Git remote behavior can also be configured through Git configuration.
-
-### View remote URL
-
-```bash
-git config --get remote.origin.url
-```
-
-Example:
-
-```text
-git@github.com:user/project.git
-```
-
-### View remote fetch specification
-
-```bash
-git config --get-all remote.origin.fetch
-```
-
-Example:
-
-```text
-+refs/heads/*:refs/remotes/origin/*
-```
-
-### View remote configuration
-
-```bash
-git config --get-regexp '^remote\.'
-```
-
-Example:
-
-```text
-remote.origin.url git@github.com:user/project.git
-remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
-```
-
-| Command                                    | Description                | Example                                    | Branch State Before and After command | Output               |
-| ------------------------------------------ | -------------------------- | ------------------------------------------ | ------------------------------------- | -------------------- |
-| `git config --get remote.origin.url`       | Displays origin URL        | `git config --get remote.origin.url`       | `main` → `main`                       | Remote URL           |
-| `git config --get-all remote.origin.fetch` | Displays fetch rules       | `git config --get-all remote.origin.fetch` | `main` → `main`                       | Fetch specification  |
-| `git config --get-regexp '^remote\.'`      | Lists remote configuration | `git config --get-regexp '^remote\.'`      | `main` → `main`                       | Remote configuration |
-
----
-
-## 1.16 Repository-Specific Configuration
-
-Global settings apply to repositories owned by the current user.
-
-Local settings apply only to the current repository.
+## 2.2 Initialize a New Repository
+
+### `git init`
+
+| Command                | Description                                                | Example               | Branch State Before and After command | Output                                          |
+| ---------------------- | ---------------------------------------------------------- | --------------------- | ------------------------------------- | ----------------------------------------------- |
+| `git init`             | Initializes a Git repository in the current directory      | `git init`            | No branch → Initial/default branch    | `Initialized empty Git repository in .../.git/` |
+| `git init <directory>` | Creates a directory and initializes a repository inside it | `git init my-project` | No branch → Initial/default branch    | Initialization message                          |
+| `git init --quiet`     | Initializes without normal informational output            | `git init --quiet`    | No branch → Initial/default branch    | Usually no output                               |
 
 Example:
 
 ```bash
+mkdir my-project
 cd my-project
-git config user.name "Work User"
-git config user.email "work@example.com"
+git init
+```
+
+Typical output:
+
+```text
+Initialized empty Git repository in /home/user/my-project/.git/
+```
+
+The repository now contains a `.git` directory.
+
+Check:
+
+```bash
+ls -la
+```
+
+Typical structure:
+
+```text
+.
+..
+.git
+```
+
+### What `git init` does
+
+It creates the internal Git repository structure, including information used for:
+
+* references
+* objects
+* configuration
+* HEAD
+* index
+* hooks
+* repository metadata
+
+It does **not** automatically create a commit.
+
+---
+
+## 2.3 Initialize With a Specific Branch
+
+Use `-b` or `--initial-branch` to specify the initial branch name.
+
+| Command                              | Description                                           | Example                          | Branch State Before and After command | Output                 |
+| ------------------------------------ | ----------------------------------------------------- | -------------------------------- | ------------------------------------- | ---------------------- |
+| `git init -b <branch>`               | Initializes repository with a specific initial branch | `git init -b main`               | No branch → `main`                    | Initialization message |
+| `git init --initial-branch=<branch>` | Long form                                             | `git init --initial-branch=main` | No branch → `main`                    | Initialization message |
+
+Example:
+
+```bash
+git init -b main
+```
+
+Typical output:
+
+```text
+Initialized empty Git repository in /home/user/project/.git/
 ```
 
 Check:
 
 ```bash
-git config --local --list
-```
-
-Example output:
-
-```text
-user.name=Work User
-user.email=work@example.com
-```
-
-### Global vs local identity
-
-Global:
-
-```bash
-git config --global user.email "personal@example.com"
-```
-
-Repository-specific:
-
-```bash
-git config user.email "work@example.com"
-```
-
-Inside this repository:
-
-```text
-work@example.com
-```
-
-Outside this repository:
-
-```text
-personal@example.com
-```
-
----
-
-## 1.17 Configuration Sources
-
-Git configuration can originate from multiple files.
-
-Common locations include:
-
-```text
-/etc/gitconfig
-~/.gitconfig
-~/.config/git/config
-<repository>/.git/config
-<worktree-specific configuration>
-```
-
-The exact files used depend on the operating system and Git configuration.
-
-### Show configuration source
-
-| Command                                        | Description                        | Example                                        | Branch State Before and After command | Output                 |
-| ---------------------------------------------- | ---------------------------------- | ---------------------------------------------- | ------------------------------------- | ---------------------- |
-| `git config --show-origin --list`              | Shows where each setting came from | `git config --show-origin --list`              | `main` → `main`                       | Source + key/value     |
-| `git config --show-scope --list`               | Shows configuration scope          | `git config --show-scope --list`               | `main` → `main`                       | Scope + key/value      |
-| `git config --show-origin --show-scope --list` | Shows source and scope             | `git config --show-origin --show-scope --list` | `main` → `main`                       | Scope + source + value |
-
-Example:
-
-```bash
-git config --show-origin --show-scope --list
+git branch --show-current
 ```
 
 Possible output:
 
 ```text
-global  file:/home/user/.gitconfig  user.name=Marko
-global  file:/home/user/.gitconfig  user.email=dev@example.com
-local   file:.git/config            remote.origin.url=...
+main
+```
+
+This is preferable to initializing with one branch name and renaming it afterward.
+
+---
+
+## 2.4 Initialize a Bare Repository
+
+A bare repository contains Git data without a normal working tree.
+
+Use:
+
+```bash
+git init --bare
+```
+
+| Command                   | Description                                              | Example                            | Branch State Before and After command | Output                         |
+| ------------------------- | -------------------------------------------------------- | ---------------------------------- | ------------------------------------- | ------------------------------ |
+| `git init --bare`         | Creates a bare repository                                | `git init --bare repo.git`         | No working branch → No working branch | Bare repository initialization |
+| `git init --bare -b main` | Creates a bare repository with an initial default branch | `git init --bare -b main repo.git` | No working branch → No working branch | Initialization message         |
+
+Example:
+
+```bash
+mkdir project.git
+git init --bare project.git
+```
+
+Typical output:
+
+```text
+Initialized empty Git repository in /home/user/project.git/
+```
+
+A bare repository does not have:
+
+```text
+working-tree files
+```
+
+Instead, it contains Git repository data directly.
+
+Typical bare repository structure:
+
+```text
+HEAD
+config
+description
+hooks/
+info/
+objects/
+refs/
+```
+
+Bare repositories are commonly used as:
+
+* central Git servers
+* self-hosted remotes
+* deployment repositories
+* repositories used by CI/CD infrastructure
+
+---
+
+## 2.5 Clone a Repository
+
+### `git clone`
+
+`git clone` creates a local copy of an existing repository.
+
+| Command                       | Description                       | Example                                             | Branch State Before and After command   | Output         |
+| ----------------------------- | --------------------------------- | --------------------------------------------------- | --------------------------------------- | -------------- |
+| `git clone <url>`             | Clones a repository               | `git clone https://example.com/project.git`         | No local branch → Default remote branch | Clone progress |
+| `git clone <url> <directory>` | Clones into a specified directory | `git clone https://example.com/project.git app`     | No local branch → Default remote branch | Clone progress |
+| `git clone --quiet <url>`     | Suppresses normal progress        | `git clone --quiet https://example.com/project.git` | No local branch → Default remote branch | Minimal output |
+
+Example:
+
+```bash
+git clone https://example.com/project.git
+```
+
+Typical output:
+
+```text
+Cloning into 'project'...
+remote: Enumerating objects: 100, done.
+remote: Counting objects: 100% (100/100), done.
+Receiving objects: 100% (100/100), done.
+Resolving deltas: 100% (50/50), done.
+```
+
+Git normally:
+
+1. creates the destination directory
+2. initializes `.git`
+3. configures the remote named `origin`
+4. downloads repository objects
+5. creates remote-tracking references
+6. checks out the default branch
+
+---
+
+## 2.6 Clone Into a Specific Directory
+
+Syntax:
+
+```bash
+git clone <url> <directory>
+```
+
+Example:
+
+```bash
+git clone https://example.com/project.git my-project
+```
+
+The repository is created in:
+
+```text
+my-project/
+```
+
+| Command                       | Description                 | Example                                             | Branch State Before and After command | Output         |
+| ----------------------------- | --------------------------- | --------------------------------------------------- | ------------------------------------- | -------------- |
+| `git clone <url> <directory>` | Specifies local destination | `git clone https://example.com/project.git backend` | No local branch → Default branch      | Clone progress |
+
+Useful when you want a custom local directory name.
+
+---
+
+## 2.7 Clone a Specific Branch
+
+Use:
+
+```bash
+git clone --branch <branch> <url>
+```
+
+or:
+
+```bash
+git clone -b <branch> <url>
+```
+
+Example:
+
+```bash
+git clone --branch develop https://example.com/project.git
+```
+
+| Command                             | Description                             | Example                                                      | Branch State Before and After command | Output         |
+| ----------------------------------- | --------------------------------------- | ------------------------------------------------------------ | ------------------------------------- | -------------- |
+| `git clone -b <branch> <url>`       | Clones and checks out a specific branch | `git clone -b develop https://example.com/project.git`       | No branch → `develop`                 | Clone progress |
+| `git clone --branch <branch> <url>` | Long form                               | `git clone --branch release https://example.com/project.git` | No branch → `release`                 | Clone progress |
+
+Verify:
+
+```bash
+git branch --show-current
+```
+
+Output:
+
+```text
+develop
+```
+
+### Clone a tag
+
+`--branch` can also select a tag.
+
+Example:
+
+```bash
+git clone --branch v1.0.0 https://example.com/project.git
+```
+
+When a tag is checked out directly, Git normally places the repository into detached HEAD state.
+
+---
+
+## 2.8 Clone a Specific Commit Depth
+
+A shallow clone downloads limited history.
+
+### Clone only the latest commit
+
+```bash
+git clone --depth 1 https://example.com/project.git
+```
+
+| Command                      | Description                                        | Example                                                | Branch State Before and After command | Output         |
+| ---------------------------- | -------------------------------------------------- | ------------------------------------------------------ | ------------------------------------- | -------------- |
+| `git clone --depth 1 <url>`  | Creates a shallow clone containing limited history | `git clone --depth 1 https://example.com/project.git`  | No branch → Default branch            | Clone progress |
+| `git clone --depth 10 <url>` | Retrieves approximately the specified depth        | `git clone --depth 10 https://example.com/project.git` | No branch → Default branch            | Clone progress |
+
+Shallow clones are useful for:
+
+* CI jobs
+* Docker builds
+* temporary builds
+* large repositories where full history is unnecessary
+
+Example:
+
+```bash
+git clone --depth 1 --branch main https://example.com/project.git
+```
+
+### Fetch more history later
+
+A shallow repository can often be deepened:
+
+```bash
+git fetch --deepen=50
+```
+
+Or converted toward a full history:
+
+```bash
+git fetch --unshallow
 ```
 
 ---
 
-## 1.18 Configuration Debugging
+## 2.9 Clone Without Checking Out Files
 
-### Find where a specific configuration value comes from
+Use:
 
 ```bash
-git config --show-origin --get user.name
+git clone --no-checkout <url>
+```
+
+or:
+
+```bash
+git clone -n <url>
+```
+
+Example:
+
+```bash
+git clone --no-checkout https://example.com/project.git
+```
+
+| Command                         | Description                                             | Example                                                   | Branch State Before and After command                       | Output         |
+| ------------------------------- | ------------------------------------------------------- | --------------------------------------------------------- | ----------------------------------------------------------- | -------------- |
+| `git clone --no-checkout <url>` | Clones repository without populating working tree files | `git clone --no-checkout https://example.com/project.git` | No branch → Default branch reference, files not checked out | Clone progress |
+| `git clone -n <url>`            | Short form                                              | `git clone -n https://example.com/project.git`            | No branch → Default branch reference                        | Clone progress |
+
+This is useful when preparing for:
+
+* sparse checkout
+* large repositories
+* specialized working-tree setups
+
+---
+
+## 2.10 Clone Using Different Protocols
+
+Git supports several transport mechanisms.
+
+### HTTPS
+
+```bash
+git clone https://github.com/user/project.git
+```
+
+### SSH
+
+```bash
+git clone git@github.com:user/project.git
+```
+
+### Git protocol
+
+Some public repositories may support:
+
+```bash
+git clone git://example.com/project.git
+```
+
+### Local filesystem path
+
+```bash
+git clone /home/user/project.git
+```
+
+or:
+
+```bash
+git clone file:///home/user/project.git
+```
+
+| Command                           | Description               | Example                                     | Branch State Before and After command | Output         |
+| --------------------------------- | ------------------------- | ------------------------------------------- | ------------------------------------- | -------------- |
+| `git clone https://...`           | Clones over HTTPS         | `git clone https://example.com/project.git` | No branch → Default branch            | Clone progress |
+| `git clone git@...`               | Clones over SSH           | `git clone git@example.com:project.git`     | No branch → Default branch            | Clone progress |
+| `git clone git://...`             | Clones using Git protocol | `git clone git://example.com/project.git`   | No branch → Default branch            | Clone progress |
+| `git clone /path/repo.git`        | Clones from local path    | `git clone /srv/git/project.git`            | No branch → Default branch            | Clone progress |
+| `git clone file:///path/repo.git` | Clones using file URL     | `git clone file:///srv/git/project.git`     | No branch → Default branch            | Clone progress |
+
+For development and server administration, SSH and HTTPS are the most common remote transports.
+
+---
+
+## 2.11 Mirror a Repository
+
+Use:
+
+```bash
+git clone --mirror <url>
+```
+
+Example:
+
+```bash
+git clone --mirror https://example.com/project.git
+```
+
+A mirror clone is intended for mirroring repositories and includes repository references beyond an ordinary working clone.
+
+It is commonly used for:
+
+* repository migration
+* backup
+* mirroring
+* server-to-server synchronization
+
+Typical follow-up:
+
+```bash
+git push --mirror <destination>
+```
+
+### Warning
+
+`git push --mirror` can update or delete references on the destination to exactly match the source. It should be used carefully.
+
+---
+
+## 2.12 Create a Repository From an Existing Directory
+
+Suppose you already have:
+
+```text
+my-application/
+├── src/
+├── tests/
+├── README.md
+└── package.json
+```
+
+Initialize it:
+
+```bash
+cd my-application
+git init
+```
+
+Then inspect:
+
+```bash
+git status
+```
+
+Typical output:
+
+```text
+On branch main
+
+No commits yet
+
+Untracked files:
+  README.md
+  package.json
+  src/
+  tests/
+```
+
+The files are not automatically committed.
+
+---
+
+## 2.13 Create an Initial Commit
+
+After initialization:
+
+```bash
+git add .
+git commit -m "Initial commit"
+```
+
+Complete example:
+
+```bash
+mkdir my-project
+cd my-project
+git init -b main
+
+echo "# My Project" > README.md
+
+git add README.md
+git commit -m "Initial commit"
+```
+
+Typical branch transition:
+
+```text
+No commits
+    ↓
+Initial commit
+    ↓
+main
+```
+
+Typical output:
+
+```text
+[main (root-commit) abc1234] Initial commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+```
+
+| Command                     | Description          | Example                          | Branch State Before and After command         | Output            |
+| --------------------------- | -------------------- | -------------------------------- | --------------------------------------------- | ----------------- |
+| `git add <file>`            | Stages initial files | `git add README.md`              | `main` → `main`                               | Usually no output |
+| `git commit -m "<message>"` | Creates first commit | `git commit -m "Initial commit"` | `main` at no commits → `main` at first commit | Commit summary    |
+
+---
+
+## 2.14 Connect an Existing Repository to a Remote
+
+Suppose you created a local repository:
+
+```bash
+git init -b main
+```
+
+Add a remote:
+
+```bash
+git remote add origin git@github.com:user/project.git
+```
+
+Verify:
+
+```bash
+git remote -v
+```
+
+Typical output:
+
+```text
+origin  git@github.com:user/project.git (fetch)
+origin  git@github.com:user/project.git (push)
+```
+
+Push:
+
+```bash
+git push -u origin main
+```
+
+| Command                       | Description                            | Example                                                 | Branch State Before and After command              | Output             |
+| ----------------------------- | -------------------------------------- | ------------------------------------------------------- | -------------------------------------------------- | ------------------ |
+| `git remote add origin <url>` | Adds a remote repository               | `git remote add origin git@github.com:user/project.git` | `main` → `main`                                    | Usually no output  |
+| `git remote -v`               | Lists remote URLs                      | `git remote -v`                                         | `main` → `main`                                    | Remote information |
+| `git push -u origin main`     | Pushes branch and establishes upstream | `git push -u origin main`                               | Local `main` → Local `main` tracking `origin/main` | Push progress      |
+
+Complete workflow:
+
+```bash
+mkdir project
+cd project
+
+git init -b main
+
+echo "# Project" > README.md
+
+git add README.md
+git commit -m "Initial commit"
+
+git remote add origin git@github.com:user/project.git
+git push -u origin main
+```
+
+---
+
+## 2.15 Verify Repository Creation
+
+### Check repository status
+
+```bash
+git status
+```
+
+### Show current branch
+
+```bash
+git branch --show-current
+```
+
+### Check whether the directory is a Git repository
+
+```bash
+git rev-parse --is-inside-work-tree
+```
+
+Output:
+
+```text
+true
+```
+
+### Show repository root
+
+```bash
+git rev-parse --show-toplevel
 ```
 
 Example:
 
 ```text
-file:/home/user/.gitconfig    Marko
+/home/user/project
 ```
 
-### Show configuration scope
+### Show Git directory
 
 ```bash
-git config --show-scope --get user.name
+git rev-parse --git-dir
 ```
 
-Example:
+Typical output:
 
 ```text
-global  Marko
+.git
 ```
 
-### Show both
-
-```bash
-git config --show-origin --show-scope --get user.name
-```
-
-Example:
-
-```text
-global  file:/home/user/.gitconfig    Marko
-```
-
-### Debug Git environment
-
-```bash
-GIT_TRACE=1 git status
-```
-
-This can display detailed internal Git execution information.
-
-For transport debugging:
-
-```bash
-GIT_TRACE=1 GIT_CURL_VERBOSE=1 git fetch
-```
-
-Use verbose network tracing carefully because it can expose sensitive information in logs.
+| Command                               | Description                                               | Example                               | Branch State Before and After command | Output             |
+| ------------------------------------- | --------------------------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------ |
+| `git status`                          | Shows repository state                                    | `git status`                          | `main` → `main`                       | Status information |
+| `git branch --show-current`           | Shows current branch                                      | `git branch --show-current`           | `main` → `main`                       | `main`             |
+| `git rev-parse --is-inside-work-tree` | Checks whether current directory is inside a working tree | `git rev-parse --is-inside-work-tree` | `main` → `main`                       | `true`             |
+| `git rev-parse --show-toplevel`       | Shows repository root                                     | `git rev-parse --show-toplevel`       | `main` → `main`                       | Repository path    |
+| `git rev-parse --git-dir`             | Shows Git directory                                       | `git rev-parse --git-dir`             | `main` → `main`                       | `.git`             |
 
 ---
 
-## 1.19 Configuration Includes
+## 2.16 Bare vs Non-Bare Repositories
 
-Git can include another configuration file.
+### Normal repository
 
-### Include a configuration file
+Created with:
 
 ```bash
-git config --global include.path ~/.gitconfig-work
+git init
 ```
 
-This allows configurations to be separated.
-
-For example:
+Structure:
 
 ```text
-~/.gitconfig
-~/.gitconfig-work
-~/.gitconfig-personal
+project/
+├── .git/
+├── README.md
+├── src/
+└── tests/
 ```
 
-A configuration file can contain:
+It has:
 
-```ini
-[user]
-    name = Marko
-    email = work@example.com
+* Git database
+* working tree
+* current branch
+* index
+
+### Bare repository
+
+Created with:
+
+```bash
+git init --bare project.git
 ```
 
-### Conditional includes
+Structure:
 
-Git supports conditional configuration based on repository location.
-
-Example:
-
-```ini
-[includeIf "gitdir:~/work/"]
-    path = ~/.gitconfig-work
-
-[includeIf "gitdir:~/personal/"]
-    path = ~/.gitconfig-personal
+```text
+project.git/
+├── HEAD
+├── config
+├── hooks/
+├── objects/
+├── refs/
+└── ...
 ```
 
-This allows different identities and settings to be automatically selected based on the repository path.
+It does not have a normal working tree.
+
+### Comparison
+
+| Repository Type | Command           | Working Tree | Typical Use              |
+| --------------- | ----------------- | -----------: | ------------------------ |
+| Normal          | `git init`        |          Yes | Development              |
+| Bare            | `git init --bare` |           No | Server/remote repository |
 
 ---
 
-## 1.20 Useful Configuration Presets
+## 2.17 Common Repository Creation Workflows
 
-### Recommended Linux developer configuration
+### Workflow A — New local project
 
 ```bash
-git config --global init.defaultBranch main
-git config --global pull.rebase true
-git config --global push.autoSetupRemote true
-git config --global push.default simple
-git config --global core.autocrlf input
-git config --global core.editor vim
+mkdir my-project
+cd my-project
+
+git init -b main
+
+echo "# My Project" > README.md
+
+git add README.md
+git commit -m "Initial commit"
 ```
 
-Configure identity:
+Result:
 
-```bash
-git config --global user.name "Your Name"
-git config --global user.email "you@example.com"
-```
-
-Useful aliases:
-
-```bash
-git config --global alias.st "status -sb"
-git config --global alias.co checkout
-git config --global alias.sw switch
-git config --global alias.br branch
-git config --global alias.ci commit
-git config --global alias.last "log -1 HEAD"
-git config --global alias.lg "log --oneline --graph --decorate --all"
-git config --global alias.unstage "restore --staged"
-```
-
-### Verify the configuration
-
-```bash
-git config --global --list
-```
-
-For a complete view:
-
-```bash
-git config --show-origin --show-scope --list
+```text
+main
+└── Initial commit
 ```
 
 ---
 
-## 1.21 Configuration Command Summary
+### Workflow B — New local project connected to remote
 
-| Command                                         | Description                          | Example                                            | Branch State Before and After command | Output                  |
-| ----------------------------------------------- | ------------------------------------ | -------------------------------------------------- | ------------------------------------- | ----------------------- |
-| `git config --global user.name "<name>"`        | Set global username                  | `git config --global user.name "Marko"`            | `main` → `main`                       | No output               |
-| `git config --global user.email "<email>"`      | Set global email                     | `git config --global user.email "dev@example.com"` | `main` → `main`                       | No output               |
-| `git config user.name`                          | Read effective username              | `git config user.name`                             | `main` → `main`                       | Username                |
-| `git config user.email`                         | Read effective email                 | `git config user.email`                            | `main` → `main`                       | Email                   |
-| `git config --list`                             | List configuration                   | `git config --list`                                | `main` → `main`                       | Configuration           |
-| `git config --global --list`                    | List global configuration            | `git config --global --list`                       | `main` → `main`                       | Global configuration    |
-| `git config --local --list`                     | List local configuration             | `git config --local --list`                        | `main` → `main`                       | Local configuration     |
-| `git config --system --list`                    | List system configuration            | `git config --system --list`                       | `main` → `main`                       | System configuration    |
-| `git config --show-origin --list`               | Show configuration sources           | `git config --show-origin --list`                  | `main` → `main`                       | Source + values         |
-| `git config --show-scope --list`                | Show configuration scopes            | `git config --show-scope --list`                   | `main` → `main`                       | Scope + values          |
-| `git config --show-origin --show-scope --list`  | Show complete configuration metadata | `git config --show-origin --show-scope --list`     | `main` → `main`                       | Scope + source + values |
-| `git config --global init.defaultBranch main`   | Set default initial branch           | `git config --global init.defaultBranch main`      | No branch → No branch                 | No output               |
-| `git config --global pull.rebase true`          | Configure pull to rebase             | `git config --global pull.rebase true`             | `main` → `main`                       | No output               |
-| `git config --global pull.ff only`              | Allow only fast-forward pulls        | `git config --global pull.ff only`                 | `main` → `main`                       | No output               |
-| `git config --global push.autoSetupRemote true` | Automatically configure upstream     | `git config --global push.autoSetupRemote true`    | `main` → `main`                       | No output               |
-| `git config --global core.editor vim`           | Configure Vim as editor              | `git config --global core.editor vim`              | `main` → `main`                       | No output               |
-| `git config --global core.autocrlf input`       | Configure line endings               | `git config --global core.autocrlf input`          | `main` → `main`                       | No output               |
-| `git config --global core.fileMode false`       | Ignore executable-bit changes        | `git config --global core.fileMode false`          | `main` → `main`                       | No output               |
-| `git config --global alias.st status`           | Create Git alias                     | `git config --global alias.st status`              | `main` → `main`                       | No output               |
-| `git config --global --unset <key>`             | Remove global setting                | `git config --global --unset user.name`            | `main` → `main`                       | No output               |
-| `git config --unset <key>`                      | Remove local setting                 | `git config --unset user.name`                     | `main` → `main`                       | No output               |
-| `git config --get <key>`                        | Read a setting                       | `git config --get user.name`                       | `main` → `main`                       | Value                   |
-| `git config --get-all <key>`                    | Read all values                      | `git config --get-all remote.origin.fetch`         | `main` → `main`                       | Values                  |
-| `git config --show-origin --get <key>`          | Show value source                    | `git config --show-origin --get user.name`         | `main` → `main`                       | Source + value          |
-| `git config --show-scope --get <key>`           | Show value scope                     | `git config --show-scope --get user.name`          | `main` → `main`                       | Scope + value           |
+```bash
+mkdir my-project
+cd my-project
+
+git init -b main
+
+echo "# My Project" > README.md
+
+git add README.md
+git commit -m "Initial commit"
+
+git remote add origin git@github.com:user/my-project.git
+git push -u origin main
+```
+
+Result:
+
+```text
+Local:
+main ──────────────┐
+                   │
+Remote:
+origin/main ───────┘
+```
 
 ---
 
-## Essential Configuration Checklist
-
-For a new Linux development machine, configure at minimum:
+### Workflow C — Clone an existing project
 
 ```bash
-git config --global user.name "Your Name"
-git config --global user.email "you@example.com"
-git config --global init.defaultBranch main
-git config --global pull.rebase true
-git config --global push.autoSetupRemote true
-git config --global core.autocrlf input
+git clone git@github.com:user/project.git
+cd project
 ```
 
-Then verify:
+Inspect:
 
 ```bash
-git config --show-origin --show-scope --list
+git status
+git branch --show-current
+git remote -v
 ```
 
-A typical setup should contain values similar to:
+---
+
+### Workflow D — Shallow CI clone
+
+```bash
+git clone --depth 1 --branch main https://example.com/project.git
+```
+
+This minimizes downloaded history.
+
+---
+
+### Workflow E — Clone without checkout
+
+```bash
+git clone --no-checkout https://example.com/project.git
+cd project
+```
+
+This is useful before configuring specialized working-tree behavior.
+
+---
+
+### Workflow F — Repository mirror
+
+```bash
+git clone --mirror https://source.example.com/project.git
+cd project.git
+git push --mirror https://destination.example.com/project.git
+```
+
+Use this only when the destination is intended to mirror the source references.
+
+---
+
+### Workflow G — Create a bare server repository
+
+On a server:
+
+```bash
+mkdir -p /srv/git/project.git
+git init --bare --initial-branch=main /srv/git/project.git
+```
+
+Developers can then use:
+
+```bash
+git clone user@server:/srv/git/project.git
+```
+
+---
+
+## 2.18 Repository Creation Command Summary
+
+| Command                               | Description                                | Example                                                   | Branch State Before and After command  | Output                 |
+| ------------------------------------- | ------------------------------------------ | --------------------------------------------------------- | -------------------------------------- | ---------------------- |
+| `git init`                            | Initialize repository                      | `git init`                                                | No repository → Repository initialized | Initialization message |
+| `git init -b main`                    | Initialize with `main`                     | `git init -b main`                                        | No branch → `main`                     | Initialization message |
+| `git init --initial-branch=main`      | Long form for initial branch               | `git init --initial-branch=main`                          | No branch → `main`                     | Initialization message |
+| `git init --bare repo.git`            | Create bare repository                     | `git init --bare repo.git`                                | No working branch → No working branch  | Initialization message |
+| `git clone <url>`                     | Clone repository                           | `git clone https://example.com/project.git`               | No local branch → Default branch       | Clone progress         |
+| `git clone <url> <dir>`               | Clone to directory                         | `git clone https://example.com/project.git app`           | No branch → Default branch             | Clone progress         |
+| `git clone -b <branch> <url>`         | Clone specific branch                      | `git clone -b develop https://example.com/project.git`    | No branch → `develop`                  | Clone progress         |
+| `git clone --depth 1 <url>`           | Shallow clone                              | `git clone --depth 1 https://example.com/project.git`     | No branch → Default branch             | Clone progress         |
+| `git clone --no-checkout <url>`       | Clone without checkout                     | `git clone --no-checkout https://example.com/project.git` | No branch → Default branch reference   | Clone progress         |
+| `git clone --mirror <url>`            | Create repository mirror                   | `git clone --mirror https://example.com/project.git`      | No branch → Reference mirror           | Clone progress         |
+| `git remote add origin <url>`         | Add remote                                 | `git remote add origin git@github.com:user/project.git`   | `main` → `main`                        | Usually no output      |
+| `git remote -v`                       | Display remotes                            | `git remote -v`                                           | `main` → `main`                        | Remote URLs            |
+| `git push -u origin main`             | Push initial branch and configure upstream | `git push -u origin main`                                 | Local `main` → Tracking `origin/main`  | Push progress          |
+| `git status`                          | Inspect repository state                   | `git status`                                              | `main` → `main`                        | Status                 |
+| `git branch --show-current`           | Display current branch                     | `git branch --show-current`                               | `main` → `main`                        | `main`                 |
+| `git rev-parse --show-toplevel`       | Display repository root                    | `git rev-parse --show-toplevel`                           | `main` → `main`                        | Repository path        |
+| `git rev-parse --git-dir`             | Display Git directory                      | `git rev-parse --git-dir`                                 | `main` → `main`                        | `.git`                 |
+| `git rev-parse --is-inside-work-tree` | Test working-tree status                   | `git rev-parse --is-inside-work-tree`                     | `main` → `main`                        | `true`                 |
+
+---
+
+## Quick Reference
+
+### Create a new repository
+
+```bash
+mkdir project
+cd project
+git init -b main
+```
+
+### Create first commit
+
+```bash
+echo "# Project" > README.md
+git add README.md
+git commit -m "Initial commit"
+```
+
+### Add remote
+
+```bash
+git remote add origin git@github.com:user/project.git
+```
+
+### Push
+
+```bash
+git push -u origin main
+```
+
+### Clone
+
+```bash
+git clone git@github.com:user/project.git
+```
+
+### Clone a specific branch
+
+```bash
+git clone --branch develop git@github.com:user/project.git
+```
+
+### Shallow clone
+
+```bash
+git clone --depth 1 git@github.com:user/project.git
+```
+
+### Create bare repository
+
+```bash
+git init --bare --initial-branch=main project.git
+```
+
+### Verify repository
+
+```bash
+git status
+git branch --show-current
+git remote -v
+git rev-parse --show-toplevel
+```
+
+---
+
+## Important Notes
+
+### `git init` does not create a commit
+
+After:
+
+```bash
+git init -b main
+```
+
+there may be no commits yet.
+
+You must explicitly create one:
+
+```bash
+git add .
+git commit -m "Initial commit"
+```
+
+### `git clone` is more than a download
+
+A clone normally creates:
 
 ```text
-global  user.name=Your Name
-global  user.email=you@example.com
-global  init.defaultbranch=main
-global  pull.rebase=true
-global  push.autosetupremote=true
-global  core.autocrlf=input
+.git/
+working tree
+origin remote
+remote-tracking references
+local branch
 ```
 
-> **Important:** Git configuration commands generally do **not** change the current branch or working tree. They modify Git's configuration rather than repository history.
+### Bare repositories are not normal development directories
+
+Do not normally edit application files directly inside:
+
+```text
+project.git/
+```
+
+A bare repository is designed primarily to act as a Git repository endpoint.
+
+### Shallow clones have incomplete history
+
+With:
+
+```bash
+git clone --depth 1 ...
+```
+
+commands that require older history may behave differently because the complete history is not available locally.
 
 ---
 
 ## Next Part
 
-**Next file:** `02-creating-repositories.md`
+**Next file:** `03-repository-status-and-information.md`
 
-[Next: Creating Repositories](02-creating-repositories.md)
+[Next: Repository Status & Information](../03-repository-status-and-information.md)
