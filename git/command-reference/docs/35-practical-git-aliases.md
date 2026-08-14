@@ -2043,13 +2043,3 @@ This completes the full **35-part Git Command Reference**:
 33. High-Value Commands to Memorize
 34. Dangerous Commands
 35. Practical Git Aliases
-
----
-
-# End of Git Command Reference
-
-This is the final part of the 35-part reference.
-
-**Previous:** [34. Dangerous Commands](34-dangerous-commands.md)
-
-**End of Reference**
