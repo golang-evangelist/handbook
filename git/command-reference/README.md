@@ -1063,62 +1063,62 @@ For consolidating your knowledge:
 
 ## Basic Git
 
-* [Configuration](01-configuration.md)
-* [Creating Repositories](02-creating-repositories.md)
-* [Repository Status & Information](03-repository-status-and-information.md)
-* [Staging & Committing](04-staging-and-committing.md)
-* [Diff & Code Review](05-diff-and-code-review.md)
+* [Configuration](docs/01-configuration.md)
+* [Creating Repositories](docs/02-creating-repositories.md)
+* [Repository Status & Information](docs/03-repository-status-and-information.md)
+* [Staging & Committing](docs/04-staging-and-committing.md)
+* [Diff & Code Review](docs/05-diff-and-code-review.md)
 
 ## Branching & History
 
-* [Branching](06-branching.md)
-* [Merging](07-merging.md)
-* [Rebasing](08-rebasing.md)
-* [Searching Git History](13-searching-git-history.md)
-* [Comparing Branches & Commits](14-comparing-branches-and-commits.md)
+* [Branching](docs/06-branching.md)
+* [Merging](docs/07-merging.md)
+* [Rebasing](docs/08-rebasing.md)
+* [Searching Git History](docs/13-searching-git-history.md)
+* [Comparing Branches & Commits](docs/14-comparing-branches-and-commits.md)
 
 ## Remote Workflow
 
-* [Remote Repositories](09-remote-repositories.md)
-* [Tags & Releases](12-tags-and-releases.md)
-* [Cherry-Pick](16-cherry-pick.md)
+* [Remote Repositories](docs/09-remote-repositories.md)
+* [Tags & Releases](docs/12-tags-and-releases.md)
+* [Cherry-Pick](docs/16-cherry-pick.md)
 
 ## Recovery
 
-* [Undoing Changes](10-undoing-changes.md)
-* [Stash](11-stash.md)
-* [Conflict Resolution](15-conflict-resolution.md)
-* [Reflog & Recovery](17-reflog-and-recovery.md)
-* [Git Bisect](18-git-bisect.md)
+* [Undoing Changes](docs/10-undoing-changes.md)
+* [Stash](docs/11-stash.md)
+* [Conflict Resolution](docs/15-conflict-resolution.md)
+* [Reflog & Recovery](docs/17-reflog-and-recovery.md)
+* [Git Bisect](docs/18-git-bisect.md)
 
 ## Advanced Git
 
-* [Submodules](19-submodules.md)
-* [Worktrees](20-worktrees.md)
-* [Git LFS](21-git-lfs.md)
-* [Git Hooks](22-git-hooks.md)
-* [Repository Maintenance](23-repository-maintenance.md)
-* [Repository Diagnostics](24-repository-diagnostics.md)
-* [Git Objects / Internals](25-git-objects-internals.md)
+* [Submodules](docs/19-submodules.md)
+* [Worktrees](docs/20-worktrees.md)
+* [Git LFS](docs/21-git-lfs.md)
+* [Git Hooks](docs/22-git-hooks.md)
+* [Repository Maintenance](docs/23-repository-maintenance.md)
+* [Repository Diagnostics](docs/24-repository-diagnostics.md)
+* [Git Objects / Internals](docs/25-git-objects-internals.md)
 
 ## Repository Management
 
-* [Ignoring Files](26-ignoring-files.md)
-* [File Tracking](27-file-tracking.md)
-* [Sparse Checkout](28-sparse-checkout.md)
-* [Git Archives](29-git-archives.md)
+* [Ignoring Files](docs/26-ignoring-files.md)
+* [File Tracking](docs/27-file-tracking.md)
+* [Sparse Checkout](docs/28-sparse-checkout.md)
+* [Git Archives](docs/29-git-archives.md)
 
 ## Automation / DevOps
 
-* [Environment & Automation](30-environment-and-automation.md)
-* [Common DevOps / CI Commands](31-common-devops-ci-commands.md)
-* [Common Developer Workflows](32-common-developer-workflows.md)
+* [Environment & Automation](docs/30-environment-and-automation.md)
+* [Common DevOps / CI Commands](docs/31-common-devops-ci-commands.md)
+* [Common Developer Workflows](docs/32-common-developer-workflows.md)
 
 ## Quick Reference
 
-* [High-Value Commands to Memorize](33-high-value-commands-to-memorize.md)
-* [Dangerous Commands](34-dangerous-commands.md)
-* [Practical Git Aliases](35-practical-git-aliases.md)
+* [High-Value Commands to Memorize](docs/33-high-value-commands-to-memorize.md)
+* [Dangerous Commands](docs/34-dangerous-commands.md)
+* [Practical Git Aliases](docs/35-practical-git-aliases.md)
 
 ---
 
