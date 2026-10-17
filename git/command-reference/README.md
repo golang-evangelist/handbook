@@ -296,7 +296,7 @@ Therefore, output should be treated as a **representative example**, rather than
 
 **File:**
 
-[`01-configuration.md`](01-configuration.md)
+[`01-configuration.md`](docs/01-configuration.md)
 
 Covers Git configuration:
 
@@ -319,7 +319,7 @@ Includes:
 
 **File:**
 
-[`02-creating-repositories.md`](02-creating-repositories.md)
+[`02-creating-repositories.md`](docs/02-creating-repositories.md)
 
 Covers repository creation and initialization:
 
@@ -334,7 +334,7 @@ git clone
 
 **File:**
 
-[`03-repository-status-and-information.md`](03-repository-status-and-information.md)
+[`03-repository-status-and-information.md`](docs/03-repository-status-and-information.md)
 
 Covers repository inspection:
 
@@ -352,7 +352,7 @@ git show
 
 **File:**
 
-[`04-staging-and-committing.md`](04-staging-and-committing.md)
+[`04-staging-and-committing.md`](docs/04-staging-and-committing.md)
 
 The basic Git development cycle:
 
@@ -377,7 +377,7 @@ git commit
 
 **File:**
 
-[`05-diff-and-code-review.md`](05-diff-and-code-review.md)
+[`05-diff-and-code-review.md`](docs/05-diff-and-code-review.md)
 
 Covers change analysis:
 
@@ -395,7 +395,7 @@ This chapter is especially important for code review and checking content before
 
 **File:**
 
-[`06-branching.md`](06-branching.md)
+[`06-branching.md`](docs/06-branching.md)
 
 Covers:
 
@@ -413,7 +413,7 @@ and the branch lifecycle.
 
 **File:**
 
-[`07-merging.md`](07-merging.md)
+[`07-merging.md`](docs/07-merging.md)
 
 Covers branch integration:
 
@@ -434,7 +434,7 @@ including:
 
 **File:**
 
-[`08-rebasing.md`](08-rebasing.md)
+[`08-rebasing.md`](docs/08-rebasing.md)
 
 Covers:
 
@@ -458,7 +458,7 @@ as well as:
 
 **File:**
 
-[`09-remote-repositories.md`](09-remote-repositories.md)
+[`09-remote-repositories.md`](docs/09-remote-repositories.md)
 
 Covers working with remote repositories:
 
@@ -475,7 +475,7 @@ git push
 
 **File:**
 
-[`10-undoing-changes.md`](10-undoing-changes.md)
+[`10-undoing-changes.md`](docs/10-undoing-changes.md)
 
 One of the most important chapters for everyday work.
 
@@ -501,7 +501,7 @@ repository history
 
 **File:**
 
-[`11-stash.md`](11-stash.md)
+[`11-stash.md`](docs/11-stash.md)
 
 Covers temporarily saving work:
 
@@ -519,7 +519,7 @@ git stash list
 
 **File:**
 
-[`12-tags-and-releases.md`](12-tags-and-releases.md)
+[`12-tags-and-releases.md`](docs/12-tags-and-releases.md)
 
 Covers:
 
@@ -535,7 +535,7 @@ and Git tag workflows for release management.
 
 **File:**
 
-[`13-searching-git-history.md`](13-searching-git-history.md)
+[`13-searching-git-history.md`](docs/13-searching-git-history.md)
 
 Covers history searching using:
 
@@ -552,7 +552,7 @@ git log -G
 
 **File:**
 
-[`14-comparing-branches-and-commits.md`](14-comparing-branches-and-commits.md)
+[`14-comparing-branches-and-commits.md`](docs/14-comparing-branches-and-commits.md)
 
 Covers comparisons between:
 
@@ -570,7 +570,7 @@ using `git diff`, `git log`, and related commands.
 
 **File:**
 
-[`15-conflict-resolution.md`](15-conflict-resolution.md)
+[`15-conflict-resolution.md`](docs/15-conflict-resolution.md)
 
 Covers Git conflicts that occur during:
 
@@ -588,7 +588,7 @@ and the process of resolving them.
 
 **File:**
 
-[`16-cherry-pick.md`](16-cherry-pick.md)
+[`16-cherry-pick.md`](docs/16-cherry-pick.md)
 
 Covers:
 
@@ -604,7 +604,7 @@ and selectively transferring commits between branches.
 
 **File:**
 
-[`17-reflog-and-recovery.md`](17-reflog-and-recovery.md)
+[`17-reflog-and-recovery.md`](docs/17-reflog-and-recovery.md)
 
 One of the most important chapters for recovery.
 
@@ -628,7 +628,7 @@ as well as recovery after:
 
 **File:**
 
-[`18-git-bisect.md`](18-git-bisect.md)
+[`18-git-bisect.md`](docs/18-git-bisect.md)
 
 Covers finding the commit that introduced a bug:
 
@@ -654,7 +654,7 @@ git bisect
 
 **File:**
 
-[`19-submodules.md`](19-submodules.md)
+[`19-submodules.md`](docs/19-submodules.md)
 
 Covers Git submodules:
 
@@ -675,7 +675,7 @@ including:
 
 **File:**
 
-[`20-worktrees.md`](20-worktrees.md)
+[`20-worktrees.md`](docs/20-worktrees.md)
 
 Covers:
 
@@ -691,7 +691,7 @@ Worktrees allow you to work with multiple branches of the same repository in dif
 
 **File:**
 
-[`21-git-lfs.md`](21-git-lfs.md)
+[`21-git-lfs.md`](docs/21-git-lfs.md)
 
 Covers Git Large File Storage.
 
@@ -703,7 +703,7 @@ It is used for large binary files that are not ideal for standard Git object sto
 
 **File:**
 
-[`22-git-hooks.md`](22-git-hooks.md)
+[`22-git-hooks.md`](docs/22-git-hooks.md)
 
 Covers Git hooks and Git-event automation.
 
@@ -722,7 +722,7 @@ post-merge
 
 **File:**
 
-[`23-repository-maintenance.md`](23-repository-maintenance.md)
+[`23-repository-maintenance.md`](docs/23-repository-maintenance.md)
 
 Covers repository maintenance:
 
@@ -741,7 +741,7 @@ and related operations.
 
 **File:**
 
-[`24-repository-diagnostics.md`](24-repository-diagnostics.md)
+[`24-repository-diagnostics.md`](docs/24-repository-diagnostics.md)
 
 Covers troubleshooting and diagnostics:
 
@@ -758,7 +758,7 @@ git rev-parse
 
 **File:**
 
-[`25-git-objects-internals.md`](25-git-objects-internals.md)
+[`25-git-objects-internals.md`](docs/25-git-objects-internals.md)
 
 Covers Git internals:
 
@@ -786,7 +786,7 @@ repository structure.
 
 **File:**
 
-[`26-ignoring-files.md`](26-ignoring-files.md)
+[`26-ignoring-files.md`](docs/26-ignoring-files.md)
 
 Covers:
 
@@ -804,7 +804,7 @@ and file ignore rules.
 
 **File:**
 
-[`27-file-tracking.md`](27-file-tracking.md)
+[`27-file-tracking.md`](docs/27-file-tracking.md)
 
 Covers the file lifecycle:
 
@@ -831,7 +831,7 @@ copied
 
 **File:**
 
-[`28-sparse-checkout.md`](28-sparse-checkout.md)
+[`28-sparse-checkout.md`](docs/28-sparse-checkout.md)
 
 Covers selectively checking out part of a repository:
 
@@ -847,7 +847,7 @@ This is especially useful for large repositories.
 
 **File:**
 
-[`29-git-archives.md`](29-git-archives.md)
+[`29-git-archives.md`](docs/29-git-archives.md)
 
 Covers:
 
@@ -863,7 +863,7 @@ for creating source distributions from Git history.
 
 **File:**
 
-[`30-environment-and-automation.md`](30-environment-and-automation.md)
+[`30-environment-and-automation.md`](docs/30-environment-and-automation.md)
 
 Covers Git in automation environments:
 
@@ -879,7 +879,7 @@ Covers Git in automation environments:
 
 **File:**
 
-[`31-common-devops-ci-commands.md`](31-common-devops-ci-commands.md)
+[`31-common-devops-ci-commands.md`](docs/31-common-devops-ci-commands.md)
 
 Covers Git commands useful in:
 
@@ -897,7 +897,7 @@ automation
 
 **File:**
 
-[`32-common-developer-workflows.md`](32-common-developer-workflows.md)
+[`32-common-developer-workflows.md`](docs/32-common-developer-workflows.md)
 
 Covers complete practical workflows.
 
@@ -918,7 +918,7 @@ branch synchronization
 
 **File:**
 
-[`33-high-value-commands-to-memorize.md`](33-high-value-commands-to-memorize.md)
+[`33-high-value-commands-to-memorize.md`](docs/33-high-value-commands-to-memorize.md)
 
 A compact list of Git commands with the highest practical value.
 
@@ -930,7 +930,7 @@ This chapter is intended for quick learning and memorization.
 
 **File:**
 
-[`34-dangerous-commands.md`](34-dangerous-commands.md)
+[`34-dangerous-commands.md`](docs/34-dangerous-commands.md)
 
 Specifically covers commands that can:
 
@@ -955,7 +955,7 @@ git rebase
 
 **File:**
 
-[`35-practical-git-aliases.md`](35-practical-git-aliases.md)
+[`35-practical-git-aliases.md`](docs/35-practical-git-aliases.md)
 
 Covers practical Git aliases for:
 
@@ -1316,7 +1316,7 @@ git reflog
 
 Chapter:
 
-[`34-dangerous-commands.md`](34-dangerous-commands.md)
+[`34-dangerous-commands.md`](docs/34-dangerous-commands.md)
 
 should be used as a safety reference before executing commands that modify Git history or delete data.
 
@@ -1341,7 +1341,7 @@ An important rule:
 
 Chapter:
 
-[`35-practical-git-aliases.md`](35-practical-git-aliases.md)
+[`35-practical-git-aliases.md`](docs/35-practical-git-aliases.md)
 
 contains practical aliases for everyday work.
 
@@ -1412,31 +1412,31 @@ For example:
 
 Open:
 
-[`17-reflog-and-recovery.md`](17-reflog-and-recovery.md)
+[`17-reflog-and-recovery.md`](docs/17-reflog-and-recovery.md)
 
 ### "I have a merge conflict."
 
 Open:
 
-[`15-conflict-resolution.md`](15-conflict-resolution.md)
+[`15-conflict-resolution.md`](docs/15-conflict-resolution.md)
 
 ### "I want to find the commit that introduced a bug."
 
 Open:
 
-[`18-git-bisect.md`](18-git-bisect.md)
+[`18-git-bisect.md`](docs/18-git-bisect.md)
 
 ### "I want to see what I changed."
 
 Open:
 
-[`05-diff-and-code-review.md`](05-diff-and-code-review.md)
+[`05-diff-and-code-review.md`](docs/05-diff-and-code-review.md)
 
 ### "I want to work with multiple branches in parallel."
 
 Open:
 
-[`20-worktrees.md`](20-worktrees.md)
+[`20-worktrees.md`](docs/20-worktrees.md)
 
 ---
 
@@ -1920,38 +1920,38 @@ For quick revision:
 
 |  # | Area                            | File                                                                                 |
 | -: | ------------------------------- | ------------------------------------------------------------------------------------ |
-| 01 | Configuration                   | [`01-configuration.md`](01-configuration.md)                                         |
-| 02 | Creating Repositories           | [`02-creating-repositories.md`](02-creating-repositories.md)                         |
-| 03 | Repository Status & Information | [`03-repository-status-and-information.md`](03-repository-status-and-information.md) |
-| 04 | Staging & Committing            | [`04-staging-and-committing.md`](04-staging-and-committing.md)                       |
-| 05 | Diff & Code Review              | [`05-diff-and-code-review.md`](05-diff-and-code-review.md)                           |
-| 06 | Branching                       | [`06-branching.md`](06-branching.md)                                                 |
-| 07 | Merging                         | [`07-merging.md`](07-merging.md)                                                     |
-| 08 | Rebasing                        | [`08-rebasing.md`](08-rebasing.md)                                                   |
-| 09 | Remote Repositories             | [`09-remote-repositories.md`](09-remote-repositories.md)                             |
-| 10 | Undoing Changes                 | [`10-undoing-changes.md`](10-undoing-changes.md)                                     |
-| 11 | Stash                           | [`11-stash.md`](11-stash.md)                                                         |
-| 12 | Tags & Releases                 | [`12-tags-and-releases.md`](12-tags-and-releases.md)                                 |
-| 13 | Searching Git History           | [`13-searching-git-history.md`](13-searching-git-history.md)                         |
-| 14 | Comparing Branches & Commits    | [`14-comparing-branches-and-commits.md`](14-comparing-branches-and-commits.md)       |
-| 15 | Conflict Resolution             | [`15-conflict-resolution.md`](15-conflict-resolution.md)                             |
-| 16 | Cherry-Pick                     | [`16-cherry-pick.md`](16-cherry-pick.md)                                             |
-| 17 | Reflog & Recovery               | [`17-reflog-and-recovery.md`](17-reflog-and-recovery.md)                             |
-| 18 | Git Bisect                      | [`18-git-bisect.md`](18-git-bisect.md)                                               |
-| 19 | Submodules                      | [`19-submodules.md`](19-submodules.md)                                               |
-| 20 | Worktrees                       | [`20-worktrees.md`](20-worktrees.md)                                                 |
-| 21 | Git LFS                         | [`21-git-lfs.md`](21-git-lfs.md)                                                     |
-| 22 | Git Hooks                       | [`22-git-hooks.md`](22-git-hooks.md)                                                 |
-| 23 | Repository Maintenance          | [`23-repository-maintenance.md`](23-repository-maintenance.md)                       |
-| 24 | Repository Diagnostics          | [`24-repository-diagnostics.md`](24-repository-diagnostics.md)                       |
-| 25 | Git Objects / Internals         | [`25-git-objects-internals.md`](25-git-objects-internals.md)                         |
-| 26 | Ignoring Files                  | [`26-ignoring-files.md`](26-ignoring-files.md)                                       |
-| 27 | File Tracking                   | [`27-file-tracking.md`](27-file-tracking.md)                                         |
-| 28 | Sparse Checkout                 | [`28-sparse-checkout.md`](28-sparse-checkout.md)                                     |
-| 29 | Git Archives                    | [`29-git-archives.md`](29-git-archives.md)                                           |
-| 30 | Environment & Automation        | [`30-environment-and-automation.md`](30-environment-and-automation.md)               |
-| 31 | Common DevOps / CI Commands     | [`31-common-devops-ci-commands.md`](31-common-devops-ci-commands.md)                 |
-| 32 | Common Developer Workflows      | [`32-common-developer-workflows.md`](32-common-developer-workflows.md)               |
-| 33 | High-Value Commands to Memorize | [`33-high-value-commands-to-memorize.md`](33-high-value-commands-to-memorize.md)     |
-| 34 | Dangerous Commands              | [`34-dangerous-commands.md`](34-dangerous-commands.md)                               |
-| 35 | Practical Git Aliases           | [`35-practical-git-aliases.md`](35-practical-git-aliases.md)                         |
+| 01 | Configuration                   | [`01-configuration.md`](docs/01-configuration.md)                                         |
+| 02 | Creating Repositories           | [`02-creating-repositories.md`](docs/02-creating-repositories.md)                         |
+| 03 | Repository Status & Information | [`03-repository-status-and-information.md`](docs/03-repository-status-and-information.md) |
+| 04 | Staging & Committing            | [`04-staging-and-committing.md`](docs/04-staging-and-committing.md)                       |
+| 05 | Diff & Code Review              | [`05-diff-and-code-review.md`](docs/05-diff-and-code-review.md)                           |
+| 06 | Branching                       | [`06-branching.md`](docs/06-branching.md)                                                 |
+| 07 | Merging                         | [`07-merging.md`](docs/07-merging.md)                                                     |
+| 08 | Rebasing                        | [`08-rebasing.md`](docs/08-rebasing.md)                                                   |
+| 09 | Remote Repositories             | [`09-remote-repositories.md`](docs/09-remote-repositories.md)                             |
+| 10 | Undoing Changes                 | [`10-undoing-changes.md`](docs/10-undoing-changes.md)                                     |
+| 11 | Stash                           | [`11-stash.md`](docs/11-stash.md)                                                         |
+| 12 | Tags & Releases                 | [`12-tags-and-releases.md`](docs/12-tags-and-releases.md)                                 |
+| 13 | Searching Git History           | [`13-searching-git-history.md`](docs/13-searching-git-history.md)                         |
+| 14 | Comparing Branches & Commits    | [`14-comparing-branches-and-commits.md`](docs/14-comparing-branches-and-commits.md)       |
+| 15 | Conflict Resolution             | [`15-conflict-resolution.md`](docs/15-conflict-resolution.md)                             |
+| 16 | Cherry-Pick                     | [`16-cherry-pick.md`](docs/16-cherry-pick.md)                                             |
+| 17 | Reflog & Recovery               | [`17-reflog-and-recovery.md`](docs/17-reflog-and-recovery.md)                             |
+| 18 | Git Bisect                      | [`18-git-bisect.md`](docs/18-git-bisect.md)                                               |
+| 19 | Submodules                      | [`19-submodules.md`](docs/19-submodules.md)                                               |
+| 20 | Worktrees                       | [`20-worktrees.md`](docs/20-worktrees.md)                                                 |
+| 21 | Git LFS                         | [`21-git-lfs.md`](docs/21-git-lfs.md)                                                     |
+| 22 | Git Hooks                       | [`22-git-hooks.md`](docs/22-git-hooks.md)                                                 |
+| 23 | Repository Maintenance          | [`23-repository-maintenance.md`](docs/23-repository-maintenance.md)                       |
+| 24 | Repository Diagnostics          | [`24-repository-diagnostics.md`](docs/24-repository-diagnostics.md)                       |
+| 25 | Git Objects / Internals         | [`25-git-objects-internals.md`](docs/25-git-objects-internals.md)                         |
+| 26 | Ignoring Files                  | [`26-ignoring-files.md`](docs/26-ignoring-files.md)                                       |
+| 27 | File Tracking                   | [`27-file-tracking.md`](docs/27-file-tracking.md)                                         |
+| 28 | Sparse Checkout                 | [`28-sparse-checkout.md`](docs/28-sparse-checkout.md)                                     |
+| 29 | Git Archives                    | [`29-git-archives.md`](docs/29-git-archives.md)                                           |
+| 30 | Environment & Automation        | [`30-environment-and-automation.md`](docs/30-environment-and-automation.md)               |
+| 31 | Common DevOps / CI Commands     | [`31-common-devops-ci-commands.md`](docs/31-common-devops-ci-commands.md)                 |
+| 32 | Common Developer Workflows      | [`32-common-developer-workflows.md`](docs/32-common-developer-workflows.md)               |
+| 33 | High-Value Commands to Memorize | [`33-high-value-commands-to-memorize.md`](docs/33-high-value-commands-to-memorize.md)     |
+| 34 | Dangerous Commands              | [`34-dangerous-commands.md`](docs/34-dangerous-commands.md)                               |
+| 35 | Practical Git Aliases           | [`35-practical-git-aliases.md`](docs/35-practical-git-aliases.md)                         |
