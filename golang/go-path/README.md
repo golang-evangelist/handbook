@@ -1,6 +1,8 @@
+<div align="center">
+
 # Go Path - Zero to Gopher
 
-> A detailed, thorough, and analytical course on the Go (Golang) programming language, in English.
+A detailed, thorough, and analytical course on the Go (Golang) programming language, in English.
 
 ![Go Version](https://img.shields.io/badge/Go-1.22+-00ADD8?style=for-the-badge&logo=go)
 ![Status](https://img.shields.io/badge/Status-In%20Progress-orange?style=for-the-badge)
@@ -10,13 +12,17 @@
 [![Instagram](https://img.shields.io/badge/Instagram-@go__evangelist-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/go_evangelist)
 [![X](https://img.shields.io/badge/X-@go__evangelist-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/go_evangelist)
 
-The course takes you from the first program to services, tests, concurrency, secure code, profiling, and tools around the Go ecosystem. Each lesson explains the mechanism, shows code, and breaks down the decision: why Go works exactly that way and what trade-off that decision carries.
+</div>
 
-The target language version is **Go 1.22+**. Where a lesson depends on a newer API, that is noted in the text itself.
+---
 
-The course has **227 lessons** in three modules: `01-Basics`, `02-Intermediate`, and `03-Others`. The basics are areas `01` through `08`.
-
-Starting lesson: [01.01 - Introduction](01-Basics/01-Go-Getting-Started/01.01-Introduction.md).
+> The course takes you from the first program to services, tests, concurrency, secure code, profiling, and tools around the Go ecosystem. Each lesson explains the mechanism, shows code, and breaks down the decision: why Go works exactly that way and what trade-off that decision carries.
+> 
+> The target language version is **Go 1.22+**. Where a lesson depends on a newer API, that is noted in the text itself.
+> 
+> The course has **227 lessons** in three modules: `01-Basics`, `02-Intermediate`, and `03-Others`. The basics are areas `01` through `08`.
+> 
+> Starting lesson: [01.01 - Introduction](01-Basics/01-Go-Getting-Started/01.01-Introduction.md).
 
 ---
 
